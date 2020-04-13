@@ -1,0 +1,7 @@
+{
+    "schemaType": "LAUNCHER",
+    "id": "metric-aggregator",
+    "description": "Aggregate metrics to optimize query speed and retention.",
+    "displayName": "Metric Aggregator",
+    "rootNerdletId": "e2m-gui-nerdlet"
+}
