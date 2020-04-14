@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Switch from 'react-toggle-switch'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Switch from 'react-toggle-switch';
 
 const EnableSwitch = ({ enabled, toggleClicked, metricName }) => {
   return (
