@@ -5,7 +5,9 @@
   "version": "0.7.0",
   "scripts": {
     "start": "nr1 nerdpack:serve",
-    "test": "exit 0"
+    "test": "exit 0",
+    "eslint-check": "eslint nerdlets/ ",
+    "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
     "@material-ui/core": "^4.6.1",
@@ -17,6 +19,13 @@
     "react-dom": "^16.6.3",
     "react-select-search": "^0.10.1",
     "react-toggle-switch": "^3.0.4"
+  },
+  "devDependencies": {
+    "@newrelic/eslint-plugin-newrelic": "^0.3.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
+    "eslint": "^6.8.0",
+    "prettier": "^1.19.1"
   },
   "browserslist": [
     "last 2 versions",
