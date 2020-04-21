@@ -99,6 +99,7 @@ class RuleAliasValidator extends React.Component {
     const disabledOrNotObj = !this.readyToSetRuleAlias()
       ? { disabled: true }
       : {};
+    /* eslint-disable no-nested-ternary */
     return (
       <div className="validator">
         <TextField
@@ -130,6 +131,7 @@ class RuleAliasValidator extends React.Component {
         )}
       </div>
     );
+    /* eslint-enable */
   }
 }
 

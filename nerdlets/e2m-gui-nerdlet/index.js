@@ -64,6 +64,10 @@ export default class E2mGui extends React.Component {
     this.reloadE2MRules = this.reloadE2MRules.bind(this);
   }
 
+  componentDidMount() {
+    this.reloadE2MRules();
+  }
+
   addNewRuleAndCloseDialog(ruleCardinality) {
     this.onCloseModalPressed();
     this.addNewRuleCardinality(ruleCardinality);
@@ -75,10 +79,11 @@ export default class E2mGui extends React.Component {
   }
 
   setCardinalities(cardinalities, cardinalityTotals, timerangeArray) {
+    const { timerangeArray: stateTimerangeArray } = this.state;
     const timerange =
-      !this.state.timerangeArray || !this.state.timerangeArray.length
+      !stateTimerangeArray || !stateTimerangeArray.length
         ? timerangeArray
-        : this.state.timerangeArray;
+        : stateTimerangeArray;
     this.setState({
       cardinalities,
       cardinalityTotals,
@@ -104,10 +109,11 @@ export default class E2mGui extends React.Component {
         ? []
         : [...this.state.cardinalities];
     const cardinalities = copied.filter(item => item.accountId !== accountId);
+    const { timerangeArray: stateTimerangeArray } = this.state;
     const timerangeArray =
-      !this.state.timerangeArray || !this.state.timerangeArray.length
+      !stateTimerangeArray || !stateTimerangeArray.length
         ? getTimeRangeFromCardinality(cardinalitiesForAccount)
-        : this.state.timerangeArray;
+        : stateTimerangeArray;
     cardinalities.push(cardinalitiesForAccount);
     const ruleCount = cardinalities.reduce(
       (total, cardinality) => total + cardinality.cardinalities.length,
@@ -157,7 +163,8 @@ export default class E2mGui extends React.Component {
 
       // Get the timerange from a nonempty cardinality if it hasnt already been defined
       // TODO - this could use a more robust solution.
-      let timerangeArray = this.state.timerangeArray;
+      const { timerangeArray: stateTimerangeArray } = this.state;
+      let timerangeArray = stateTimerangeArray;
       if (!timerangeArray || !timerangeArray.length) {
         const nonEmptyCardinalities = cardinalities.filter(
           card => card.cardinalities && card.cardinalities.length
@@ -177,7 +184,7 @@ export default class E2mGui extends React.Component {
       });
     } catch (error) {
       console.log('error:', error); // eslint-disable-line no-console
-      this.setState({ cardinalityDataLoading: false, error });
+      this.setState({ cardinalityDataLoading: false, error }); // eslint-disable-line react/no-unused-state
     }
   }
 
@@ -209,16 +216,14 @@ export default class E2mGui extends React.Component {
         actions: [],
         type: Toast.TYPE.CRITICAL
       });
+      /* eslint-disable react/no-unused-state */
       this.setState({
         error: true,
         tableDataLoading: false,
         cardinalityDataLoading: false
       });
+      /* eslint-enable */
     }
-  }
-
-  componentDidMount() {
-    this.reloadE2MRules();
   }
 
   getTimeRange() {
@@ -259,6 +264,7 @@ export default class E2mGui extends React.Component {
               return result;
             }, {})
         ).length;
+    /* eslint-disable no-nested-ternary */
     return (
       <div className="OuterMargins">
         <div>
@@ -452,5 +458,6 @@ export default class E2mGui extends React.Component {
         </div>
       </div>
     );
+    /* eslint-enable */
   }
 }

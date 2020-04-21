@@ -9,6 +9,10 @@ import {
 } from '../../util/chart-helper';
 
 class RuleValidator extends React.Component {
+  componentDidMount() {
+    this.props.setValidationTimeout();
+  }
+
   componentDidUpdate(prevProps) {
     const propsThatAffectCardinality = [
       'selectedAccountID',
@@ -25,10 +29,6 @@ class RuleValidator extends React.Component {
         this.props.setValidationTimeout();
       }
     }
-  }
-
-  componentDidMount() {
-    this.props.setValidationTimeout();
   }
 
   render() {

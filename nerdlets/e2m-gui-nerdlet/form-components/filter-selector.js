@@ -8,6 +8,7 @@ import { buildFilterValidationQuery } from '../../util/graphqlbuilders';
 class FilterSelector extends React.Component {
   constructor(props) {
     super(props);
+    /* eslint-disable react/no-unused-state */
     this.state = {
       filters: [],
       usingNRQL: false,
@@ -17,6 +18,7 @@ class FilterSelector extends React.Component {
       validating: false,
       error: null
     };
+    /* eslint-enable */
     this.toggleFilterMode = this.toggleFilterMode.bind(this);
     this.setNRQL = this.setNRQL.bind(this);
     this.setAttributeForIndex = this.setAttributeForIndex.bind(this);
@@ -27,12 +29,15 @@ class FilterSelector extends React.Component {
   }
 
   addFilter() {
-    const filters = [...this.state.filters];
+    const { filters: oldFilters } = this.state;
+    const filters = [...oldFilters];
     filters.push({ attribute: null, operator: null, value: null });
+    /* eslint-disable react/no-unused-state */
     this.setState({
       filters,
       nrql: null
     });
+    /* eslint-enable */
   }
 
   setAttributeForIndex(attribute, index) {
@@ -228,8 +233,9 @@ class FilterSelector extends React.Component {
   }
 
   toggleFilterMode() {
+    const { usingNRQL } = this.state;
     this.setState({
-      usingNRQL: !this.state.usingNRQL,
+      usingNRQL: !usingNRQL,
       nrqlQuery: '',
       filters: [],
       valid: false,
@@ -328,6 +334,7 @@ class FilterSelector extends React.Component {
     ) {
       return null;
     }
+    /* eslint-disable no-nested-ternary */
     return (
       <div>
         {this.state.error ? (
@@ -372,6 +379,7 @@ class FilterSelector extends React.Component {
         {this.renderStatus()}
       </div>
     );
+    /* eslint-enable */
   }
 }
 

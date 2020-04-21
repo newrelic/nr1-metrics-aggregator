@@ -107,6 +107,7 @@ class MetricNameValidator extends React.Component {
     const newMetricName = !this.state.metricName
       ? ''
       : this.state.metricName.replace(/[^a-zA-Z0-9\.]/g, ''); // eslint-disable-line no-useless-escape
+    /* eslint-disable no-nested-ternary */
     return (
       <div className="validator">
         <TextField /* Don't display dangerous characters in name */
@@ -138,6 +139,7 @@ class MetricNameValidator extends React.Component {
         )}
       </div>
     );
+    /* eslint-enable */
   }
 }
 

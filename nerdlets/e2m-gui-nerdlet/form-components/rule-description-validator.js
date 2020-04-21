@@ -27,9 +27,9 @@ class RuleDescriptionValidator extends React.Component {
 
     if (this.validRuleDescription(ruleDescription)) {
       this.props.setValidatedDescription(ruleDescription);
-      this.setState({ ruleDescription, valid: true });
+      this.setState({ ruleDescription, valid: true }); // eslint-disable-line react/no-unused-state
     } else {
-      this.setState({ ruleDescription, valid: false });
+      this.setState({ ruleDescription, valid: false }); // eslint-disable-line react/no-unused-state
     }
   }
 
