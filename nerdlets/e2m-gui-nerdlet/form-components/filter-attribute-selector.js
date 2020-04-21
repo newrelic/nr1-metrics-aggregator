@@ -75,7 +75,6 @@ FilterAttributeSelector.propTypes = {
   availableAttributes: PropTypes.array.isRequired,
   setAttributeForIndex: PropTypes.func.isRequired,
   setOperatorForIndex: PropTypes.func.isRequired,
-  setAttributeForIndex: PropTypes.func.isRequired,
   removeFilterClicked: PropTypes.func,
   showRemove: PropTypes.bool,
   attribute: PropTypes.string,

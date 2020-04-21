@@ -13,7 +13,7 @@ export function chunkByKey(array, key) {
   const copied = [...array]; // ES6 destructuring
   const usedKeys = [];
   for (let i = 0; i < copied.length; i++) {
-    value = copied[i][key];
+    const value = copied[i][key];
     if (!usedKeys.find(value)) {
       chunked_arr.push(copied.filter(item => item[key] === value));
       usedKeys.push(value);

@@ -94,7 +94,6 @@ export default class AddE2MRule extends React.Component {
     this.setState({
       selectedEventType,
       selectedAttribute: null,
-      selectedAttribute: null,
       selectedFacetAttributes: [],
       validatedFilterNRQL: null,
       validatedMetricName: null,
