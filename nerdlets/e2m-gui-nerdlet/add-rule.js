@@ -193,7 +193,7 @@ export default class AddE2MRule extends React.Component {
       validatedRuleDescription
     );
     if (error) {
-      console.log(error);
+      console.log(error); // eslint-disable-line no-console
       Toast.showToast({
         title: 'An error occured while creating your rule',
         description: `This rule may not have been created.\n\nSee console for details.`,
@@ -233,10 +233,12 @@ export default class AddE2MRule extends React.Component {
     if (self.state.validationTimeout) {
       clearTimeout(self.state.validationTimeout);
     }
+    /* eslint-disable react/no-unused-state */
     this.setState({
       validationTimeout: setTimeout(self.validateRule, 1500),
       waitingToValidateCardinality: true
     });
+    /* eslint-enable */
   }
 
   readyForStepTwo() {
@@ -292,7 +294,7 @@ export default class AddE2MRule extends React.Component {
       });
     } catch (error) {
       console.log('error: ', error); // eslint-disable-line no-console
-      this.setState({ error, validatingCardinality: false });
+      this.setState({ error, validatingCardinality: false }); // eslint-disable-line react/no-unused-state
     }
   }
 

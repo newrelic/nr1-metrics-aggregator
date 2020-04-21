@@ -355,8 +355,8 @@ export async function findRuleViolations(
 
 export async function toggleMetric(ruleId, accountId, enabled) {
   const mutation = buildToggleRuleQuery(accountId, ruleId, !enabled);
-  //console.log('mutation:', mutation);
+  // console.log('mutation:', mutation);
   const res = await NerdGraphMutation.mutate(mutation);
-  //console.log('res', res);
+  // console.log('res', res);
   return res;
 }

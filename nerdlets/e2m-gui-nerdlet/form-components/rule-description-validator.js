@@ -6,19 +6,13 @@ class RuleDescriptionValidator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ruleDescription: null,
-      validationTimeout: null,
-      validating: false,
-      validated: null
+      ruleDescription: null
     };
   }
 
   clear() {
     this.setState({
-      ruleDescription: null,
-      validationTimeout: null,
-      validating: false,
-      validated: null
+      ruleDescription: null
     });
   }
 
@@ -27,7 +21,7 @@ class RuleDescriptionValidator extends React.Component {
     const ruleDescription = userInputtedRuleDescription.replace(
       /[^a-zA-Z0-9\.]/g,
       ''
-    );
+    ); // eslint-disable-line no-useless-escape
 
     if (this.validRuleDescription(ruleDescription)) {
       this.props.setValidatedDescription(ruleDescription);
@@ -58,6 +52,9 @@ class RuleDescriptionValidator extends React.Component {
     const disabledOrNotObj = !this.readyToSetRuleDescription()
       ? { disabled: true }
       : {};
+    const newRuleDescription = !this.state.ruleDescription
+      ? ''
+      : this.state.ruleDescription.replace(/[^a-zA-Z0-9\.\s ]/g, ''); // eslint-disable-line no-useless-escape
     return (
       <div className="RuleDescriptionWrapper">
         <TextField
@@ -66,11 +63,7 @@ class RuleDescriptionValidator extends React.Component {
           label=""
           placeholder="eg. 'host cpu metric rule'"
           onChange={e => this.setDescription(e.target.value)}
-          value={
-            !this.state.ruleDescription
-              ? ''
-              : this.state.ruleDescription.replace(/[^a-zA-Z0-9\.\s ]/g, '')
-          }
+          value={newRuleDescription}
         />
       </div>
     );

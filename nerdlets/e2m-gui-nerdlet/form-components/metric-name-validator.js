@@ -104,18 +104,16 @@ class MetricNameValidator extends React.Component {
     const disabledOrNotObj = !this.readyToSetMetricName()
       ? { disabled: true }
       : {};
-
+    const newMetricName = !this.state.metricName
+      ? ''
+      : this.state.metricName.replace(/[^a-zA-Z0-9\.]/g, ''); // eslint-disable-line no-useless-escape
     return (
       <div className="validator">
         <TextField /* Don't display dangerous characters in name */
           {...disabledOrNotObj}
           ref={this.props.myRef}
           className="textfield"
-          value={
-            !this.state.metricName
-              ? ''
-              : this.state.metricName.replace(/[^a-zA-Z0-9\.]/g, '')
-          }
+          value={newMetricName}
           onChange={e => this.setMetricName(e.target.value)}
           placeholder={`eg. ${
             !this.readyToSetMetricName()
