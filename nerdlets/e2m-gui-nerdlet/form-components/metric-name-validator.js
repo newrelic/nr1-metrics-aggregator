@@ -142,6 +142,7 @@ class MetricNameValidator extends React.Component {
 }
 
 MetricNameValidator.propTypes = {
+  myRef: PropTypes.string,
   selectedAccountID: PropTypes.string,
   selectedEventType: PropTypes.string,
   selectedAttribute: PropTypes.string,

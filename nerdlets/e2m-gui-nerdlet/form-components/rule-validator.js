@@ -146,15 +146,14 @@ class RuleValidator extends React.Component {
 
 RuleValidator.propTypes = {
   selectedAccountID: PropTypes.string,
-  selectedEventType: PropTypes.string,
-  selectedFacetAttributes: PropTypes.array,
-  selectedAttribute: PropTypes.string,
-  selectedAggregator: PropTypes.string,
+  timerangeArray: PropTypes.array,
+  validatingCardinality: PropTypes.bool,
   cardinalityTotals: PropTypes.object,
   cardinalityRuleViolation: PropTypes.bool,
   cardinalityAccountViolation: PropTypes.bool,
   setValidationTimeout: PropTypes.func.isRequired,
-  cardinalityDataLoading: PropTypes.bool.isRequired
+  cardinalityDataLoading: PropTypes.bool.isRequired,
+  cardinalityTimeseries: PropTypes.object
 };
 
 export default RuleValidator;

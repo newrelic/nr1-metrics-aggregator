@@ -378,10 +378,8 @@ class FilterSelector extends React.Component {
 FilterSelector.propTypes = {
   selectedAccountID: PropTypes.string,
   selectedEventType: PropTypes.string,
-  selectedAttribute: PropTypes.string,
   availableAttributes: PropTypes.array,
-  setValidatedFilterNRQL: PropTypes.func.isRequired,
-  validatedFilterNRQL: PropTypes.string
+  setValidatedFilterNRQL: PropTypes.func.isRequired
 };
 
 export default FilterSelector;

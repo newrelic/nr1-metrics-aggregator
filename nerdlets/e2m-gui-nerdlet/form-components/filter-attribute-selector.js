@@ -73,13 +73,13 @@ const FilterAttributeSelector = ({
 
 FilterAttributeSelector.propTypes = {
   availableAttributes: PropTypes.array.isRequired,
+  setValueForIndex: PropTypes.func.isRequired,
   setAttributeForIndex: PropTypes.func.isRequired,
   setOperatorForIndex: PropTypes.func.isRequired,
   removeFilterClicked: PropTypes.func,
   showRemove: PropTypes.bool,
   attribute: PropTypes.string,
-  operator: PropTypes.string,
-  value: PropTypes.string
+  operator: PropTypes.string
 };
 
 export default FilterAttributeSelector;

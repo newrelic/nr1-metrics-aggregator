@@ -134,6 +134,7 @@ class RuleAliasValidator extends React.Component {
 }
 
 RuleAliasValidator.propTypes = {
+  myRef: PropTypes.string,
   setValidatedRuleAlias: PropTypes.func.isRequired,
   e2mRulesByMetricName: PropTypes.array,
   selectedAccountID: PropTypes.string,

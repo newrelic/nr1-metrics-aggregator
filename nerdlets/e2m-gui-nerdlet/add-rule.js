@@ -60,7 +60,8 @@ export default class AddE2MRule extends React.Component {
   }
 
   toggleAdvancedMode() {
-    this.setState({ advancedMode: !this.state.advancedMode });
+    const { advancedMode } = this.state;
+    this.setState({ advancedMode: !advancedMode });
   }
 
   setAccountID(selectedAccountID) {
@@ -144,7 +145,8 @@ export default class AddE2MRule extends React.Component {
   }
 
   toggleFacetAttribute(facetAttribute) {
-    const selectedFacetAttributes = this.state.selectedFacetAttributes.slice(); // copy
+    const { selectedFacetAttributes: oldSelectedFacetAttributes } = this.state;
+    const selectedFacetAttributes = oldSelectedFacetAttributes.slice(); // copy
     const index = selectedFacetAttributes.indexOf(facetAttribute);
     if (index !== -1) {
       // if id exists, remove it
@@ -447,7 +449,6 @@ export default class AddE2MRule extends React.Component {
 
 AddE2MRule.propTypes = {
   accountsObj: PropTypes.object.isRequired,
-  addNewRuleAndCloseDialog: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   e2mRulesByMetricName: PropTypes.array,
   cardinalityTotals: PropTypes.object,

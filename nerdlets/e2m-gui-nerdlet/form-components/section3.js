@@ -57,13 +57,6 @@ Section3.propTypes = {
   activeStep: PropTypes.number,
   setActiveStep: PropTypes.func.isRequired,
   ruleIsCompletelyValidated: PropTypes.func.isRequired,
-  validatedRuleAlias: PropTypes.string,
-  validatedRuleDescription: PropTypes.string,
-  createRuleNRQL: PropTypes.string.isRequired,
-  selectedAccountID: PropTypes.string,
-  showModal: PropTypes.bool,
-  toggleModal: PropTypes.func.isRequired,
-  closeAddRule: PropTypes.func.isRequired,
   createValidatedRule: PropTypes.func.isRequired
 };
 

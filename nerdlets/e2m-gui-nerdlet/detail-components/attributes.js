@@ -18,8 +18,7 @@ const MetricAttributes = ({ nrql }) => {
 };
 
 MetricAttributes.propTypes = {
-  accountId: PropTypes.number.isRequired,
-  facets: PropTypes.array
+  nrql: PropTypes.string
 };
 
 export default MetricAttributes;

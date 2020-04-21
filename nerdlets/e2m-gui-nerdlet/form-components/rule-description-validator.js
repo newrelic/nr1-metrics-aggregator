@@ -18,10 +18,12 @@ class RuleDescriptionValidator extends React.Component {
 
   setDescription(userInputtedRuleDescription) {
     /* Remove dangerous characters from name */
+    /* eslint-disable no-useless-escape */
     const ruleDescription = userInputtedRuleDescription.replace(
       /[^a-zA-Z0-9\.]/g,
       ''
-    ); // eslint-disable-line no-useless-escape
+    );
+    /* eslint-enable */
 
     if (this.validRuleDescription(ruleDescription)) {
       this.props.setValidatedDescription(ruleDescription);
@@ -71,6 +73,7 @@ class RuleDescriptionValidator extends React.Component {
 }
 
 RuleDescriptionValidator.propTypes = {
+  myRef: PropTypes.string,
   setValidatedDescription: PropTypes.func.isRequired,
   selectedEventType: PropTypes.string,
   selectedAttribute: PropTypes.string,
