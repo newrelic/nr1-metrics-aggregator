@@ -73,7 +73,7 @@ export async function createAndSaveNewRule(
     return { result: null, error };
   }
   const newRule = data.eventsToMetricsCreateRule.successes[0];
-  return await storeRuleCardinalityIfOtherCardinalityStored(accountId, newRule);
+  return storeRuleCardinalityIfOtherCardinalityStored(accountId, newRule);
 }
 
 async function calculateCardinalityForRuleBatch(batchOfRules, accountId) {
@@ -124,7 +124,7 @@ async function saveCardinalityForAccountToNerdStorage(
     return false;
   }
   cardinalitiesForAccount.expiration = getNextWeekInSeconds();
-  return await AccountStorageMutation.mutate({
+  return AccountStorageMutation.mutate({
     accountId: accountId,
     actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
     collection: 'e2m',
@@ -155,7 +155,7 @@ async function storeRuleCardinalityIfOtherCardinalityStored(accountId, rule) {
   cardinalitiesForAccount.cardinalities.push(
     newCardinalitiesForAccount.cardinalities[0]
   );
-  return await saveCardinalityForAccountToNerdStorage(
+  return saveCardinalityForAccountToNerdStorage(
     accountId,
     cardinalitiesForAccount
   );
