@@ -78,7 +78,8 @@ class EventSelector extends React.Component {
         options={eventTypes
           .filter(
             eventType =>
-              eventType.toLowerCase() != 'metric' && !eventType.startsWith('Nr')
+              eventType.toLowerCase() !== 'metric' &&
+              !eventType.startsWith('Nr')
           )
           .map(eventType => ({
             name: eventType,

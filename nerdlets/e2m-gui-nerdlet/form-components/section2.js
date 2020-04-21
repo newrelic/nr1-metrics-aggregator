@@ -32,7 +32,7 @@ const Section2 = ({
   // const disabledOrNotObj = !selectedEventType ? { disabled: true } : {};
   return (
     <div
-      className={`sectionWrapper ${activeStep == 2 ? 'expand' : 'collapse'}`}
+      className={`sectionWrapper ${activeStep === 2 ? 'expand' : 'collapse'}`}
     >
       <div className="numberWrapper">
         <img src={two} />
@@ -49,7 +49,7 @@ const Section2 = ({
             Name and describe your new rule
           </HeadingText>
         </div>
-        <div className={`body ${activeStep == 2 ? 'expand' : 'collapse'}`}>
+        <div className={`body ${activeStep === 2 ? 'expand' : 'collapse'}`}>
           <div className="section-heading">Metric name</div>
           <div className="section-description">
             Your metric name must be unique. We recommend using dot separation

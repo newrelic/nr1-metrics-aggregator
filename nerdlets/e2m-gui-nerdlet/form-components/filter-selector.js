@@ -134,7 +134,7 @@ class FilterSelector extends React.Component {
   getNRQLFromFilters(filters) {
     let nrql = '';
     filters.forEach((filter, index) => {
-      if (index != 0) {
+      if (index !== 0) {
         nrql = `${nrql} AND `;
       } else {
         nrql = `${nrql} WHERE `;

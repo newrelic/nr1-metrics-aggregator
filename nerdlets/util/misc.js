@@ -15,7 +15,7 @@ export function chunkByKey(array, key) {
   for (let i = 0; i < copied.length; i++) {
     value = copied[i][key];
     if (!usedKeys.find(value)) {
-      chunked_arr.push(copied.filter(item => item[key] == value));
+      chunked_arr.push(copied.filter(item => item[key] === value));
       usedKeys.push(value);
     }
   }
@@ -87,7 +87,7 @@ function findReservedWordIndexInNRQL(nrql) {
 function getWheres(nrql, matches = []) {
   // find index where 'where'begins in the nrql
   const whereStartIndex = nrql.toUpperCase().indexOf(' WHERE ');
-  if (whereStartIndex != -1) {
+  if (whereStartIndex !== -1) {
     const whereEndIndex =
       whereStartIndex +
       ' WHERE '.length +

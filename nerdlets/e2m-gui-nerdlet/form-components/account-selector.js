@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Spinner } from 'nr1';
 
 import SelectSearch from 'react-select-search';
 

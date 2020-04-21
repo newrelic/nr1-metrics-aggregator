@@ -85,9 +85,9 @@ class AttributeDropdownSelector extends React.Component {
 
     const attributeFilter = attr =>
       this.props.selectedAggregator &&
-      (this.props.selectedAggregator.toLowerCase() == 'uniquecount' ||
-        (this.props.selectedAggregator.toLowerCase() == 'summary' &&
-          attr.type == 'numeric'));
+      (this.props.selectedAggregator.toLowerCase() === 'uniquecount' ||
+        (this.props.selectedAggregator.toLowerCase() === 'summary' &&
+          attr.type === 'numeric'));
 
     const { selectedAttribute, setAttribute } = this.props;
     const { attributes } = this.state;

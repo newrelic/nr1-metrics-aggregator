@@ -64,8 +64,8 @@ export default class TableWrapper extends React.Component {
               const violation = cardinality > CARDINALITY_LIMIT;
               const selected =
                 metricSelection &&
-                metricSelection.id == m.id &&
-                metricSelection.metricName == m.metricName;
+                metricSelection.id === m.id &&
+                metricSelection.metricName === m.metricName;
               return (
                 <tr
                   className={`TableRow ${selected ? 'Selected' : ''}`}

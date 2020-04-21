@@ -257,7 +257,7 @@ export async function loadCardinalityForAllEnabledRules(
     return result;
   }
   const e2mRulesForAccount = e2mRules.filter(
-    rule => rule.accountId == accountId && rule.enabled
+    rule => rule.accountId === accountId && rule.enabled
   );
   if (!e2mRulesForAccount || !e2mRulesForAccount.length) {
     return { beginTimeSeconds: [], accountId, cardinalities: [] };

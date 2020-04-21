@@ -214,7 +214,7 @@ export default class AddE2MRule extends React.Component {
 
   ruleIsCompletelyValidated() {
     return (
-      this.state.cardinalityRuleViolation == false &&
+      this.state.cardinalityRuleViolation === false &&
       !this.state.cardinalityAccountViolation &&
       !this.state.validatingCardinality &&
       !this.state.waitingToValidateCardinality &&

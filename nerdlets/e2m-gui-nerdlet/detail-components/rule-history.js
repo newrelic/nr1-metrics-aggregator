@@ -18,7 +18,7 @@ const ParseRuleHistoryFromAuditData = auditData => {
         return (
           <li key={i}>
             User {actorId}{' '}
-            {action == 'e2m_rule.create'
+            {action === 'e2m_rule.create'
               ? 'created this rule'
               : `performed action: ${action}`}{' '}
             on {date.getMonth() + 1}/{date.getUTCDate()}/{date.getYear()}

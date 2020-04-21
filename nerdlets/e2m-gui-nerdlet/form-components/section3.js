@@ -14,7 +14,7 @@ const Section3 = ({
   return (
     <div
       className={`sectionWrapper NewRuleButtonWrapper ${
-        activeStep == 3 ? 'expand' : 'collapse'
+        activeStep === 3 ? 'expand' : 'collapse'
       }`}
     >
       <div className="numberWrapper">
@@ -32,7 +32,7 @@ const Section3 = ({
             Create Rule
           </HeadingText>
         </div>
-        <div className={`body ${activeStep == 3 ? 'expand' : 'collapse'}`}>
+        <div className={`body ${activeStep === 3 ? 'expand' : 'collapse'}`}>
           <br />
 
           <Button className="next" onClick={() => setActiveStep(2)}>

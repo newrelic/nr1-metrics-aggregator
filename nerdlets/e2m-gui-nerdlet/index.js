@@ -103,7 +103,7 @@ export default class E2mGui extends React.Component {
       !this.state.cardinalities || !this.state.cardinalities.length
         ? []
         : [...this.state.cardinalities];
-    const cardinalities = copied.filter(item => item.accountId != accountId);
+    const cardinalities = copied.filter(item => item.accountId !== accountId);
     const timerangeArray =
       !this.state.timerangeArray || !this.state.timerangeArray.length
         ? getTimeRangeFromCardinality(cardinalitiesForAccount)

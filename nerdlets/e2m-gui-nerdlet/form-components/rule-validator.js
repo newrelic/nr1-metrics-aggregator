@@ -21,7 +21,7 @@ class RuleValidator extends React.Component {
     for (let i = 0; i < propsThatAffectCardinality.length; i++) {
       const prop = this.props[propsThatAffectCardinality[i]];
       const prevProp = prevProps[propsThatAffectCardinality[i]];
-      if (prop != prevProp) {
+      if (prop !== prevProp) {
         this.props.setValidationTimeout();
       }
     }

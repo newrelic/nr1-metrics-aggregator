@@ -37,7 +37,7 @@ const Section1 = ({
 }) => {
   return (
     <div
-      className={`sectionWrapper ${activeStep == 1 ? 'expand' : 'collapse'}`}
+      className={`sectionWrapper ${activeStep === 1 ? 'expand' : 'collapse'}`}
     >
       <div className="numberWrapper">
         <img src={one} />
@@ -54,7 +54,7 @@ const Section1 = ({
             Select account data to aggregate
           </HeadingText>
         </div>
-        <div className={`body ${activeStep == 1 ? 'expand' : 'collapse'}`}>
+        <div className={`body ${activeStep === 1 ? 'expand' : 'collapse'}`}>
           <div className="section-heading">Account</div>
           <div className="section-description">
             Select the account(s) you'd like to create rules for.

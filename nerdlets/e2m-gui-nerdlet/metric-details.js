@@ -26,7 +26,7 @@ export default class MetricDetails extends React.Component {
 
   /* eslint-disable no-unused-vars */
   shouldComponentUpdate(nextProps, nextState) {
-    if (JSON.stringify(this.state) != JSON.stringify(this.props)) {
+    if (JSON.stringify(this.state) !== JSON.stringify(this.props)) {
       if (!nextProps.rateReduction) {
         this.calculateRateReduction();
       }
