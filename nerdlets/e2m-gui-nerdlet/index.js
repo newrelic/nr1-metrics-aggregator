@@ -137,7 +137,7 @@ export default class E2mGui extends React.Component {
           cardinalities =>
             this.setCardinalitiesForAccount(cardinalities, accountId, e2mRules),
           e => {
-            console.log(e);
+            console.log(e); // eslint-disable-line no-console
             Toast.showToast({
               title: 'An error occured calculating cardinality',
               description: `The cardinality may not display properly.\n\nSee console for details.`,
@@ -176,7 +176,7 @@ export default class E2mGui extends React.Component {
         cardinalityDataLoading: false
       });
     } catch (error) {
-      console.log('error:', error);
+      console.log('error:', error); // eslint-disable-line no-console
       this.setState({ cardinalityDataLoading: false, error });
     }
   }

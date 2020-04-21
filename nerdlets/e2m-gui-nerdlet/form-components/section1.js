@@ -8,7 +8,7 @@ import AttributeDropdownSelector from './attribute-dropdown-selector';
 import AttributeCheckboxSelector from './attribute-checkbox-selector';
 import FilterSelector from './filter-selector';
 
-import { Button, HeadingText, TextField } from 'nr1';
+import { Button, HeadingText, TextField, Spinner } from 'nr1';
 
 import one from '../../../images/one.png';
 

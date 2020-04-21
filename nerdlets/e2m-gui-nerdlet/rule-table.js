@@ -33,7 +33,7 @@ export default class TableWrapper extends React.Component {
     disabled.sort((a, b) => (a.metricName < b.metricName ? 1 : -1));
     const metrics = enabled.concat(disabled);
     if (metrics) {
-      console.log('metrics[0]', metrics[0]);
+      console.log('metrics[0]', metrics[0]); // eslint-disable-line no-console
     }
     return (
       <div className="TableWrapper">

@@ -68,7 +68,7 @@ class AttributeDropdownSelector extends React.Component {
     // Since multiple accounts are selected, the event types shown below are aggregated from
     //      all accounts. Each individual account may not have the event types here.
     if (this.state.error) {
-      console.log(this.state.error);
+      console.log(this.state.error); // eslint-disable-line no-console
       return <div>Check console for error</div>;
     } else if (this.state.fetching) {
       return <Spinner />;

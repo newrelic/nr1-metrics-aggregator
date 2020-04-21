@@ -44,7 +44,7 @@ export default class MetricDetails extends React.Component {
     } = await calculateVolumeReductionForMetric(this.props.metric);
 
     if (errors) {
-      console.log(errors);
+      console.log(errors); // eslint-disable-line no-console
       Toast.showToast({
         title: 'Error',
         description:

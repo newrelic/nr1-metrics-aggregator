@@ -291,7 +291,7 @@ export default class AddE2MRule extends React.Component {
         validatingCardinality: false
       });
     } catch (error) {
-      console.log('error: ', error);
+      console.log('error: ', error); // eslint-disable-line no-console
       this.setState({ error, validatingCardinality: false });
     }
   }

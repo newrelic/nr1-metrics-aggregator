@@ -265,7 +265,7 @@ class FilterSelector extends React.Component {
             break;
           }
         } catch (e) {
-          console.log(e);
+          console.log(e); // eslint-disable-line no-console
           valid = false;
           break;
         }
@@ -283,7 +283,7 @@ class FilterSelector extends React.Component {
         setValidatedFilterNRQL('');
       }
     } catch (error) {
-      console.log('error:', error);
+      console.log('error:', error); // eslint-disable-line no-console
       setState({ error, validating: false });
     }
   }

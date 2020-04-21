@@ -146,7 +146,9 @@ async function storeRuleCardinalityIfOtherCardinalityStored(accountId, rule) {
     accountId,
     [rule],
     () => true,
-    e => console.log(e)
+    e => {
+      console.log(e); // eslint-disable-line no-console
+    }
   );
 
   // Add new cardinality to list
@@ -228,11 +230,13 @@ async function calculateCardinalityForEnabledRulesForAccount(
             id: rule.id,
             cardinality
           });
+          /* eslint-disable no-console */
           console.log(
             `${accountId} rule ${i * BATCH_SIZE + 1 + j} / ${
               e2mRulesForAccount.length
             }`
           );
+          /* eslint-enable */
         }
         addBatchOfCardinalitiesForAccount(cardinalitiesForAccount);
       }
@@ -330,7 +334,7 @@ export async function findRuleViolations(
     )
   );
   if (error) {
-    console.log('Error validating rule:', error);
+    console.log('Error validating rule:', error); // eslint-disable-line no-console
     return;
   }
   // Note: cannot use 'forEach' methods when needingn to break out of loops
@@ -351,8 +355,8 @@ export async function findRuleViolations(
 
 export async function toggleMetric(ruleId, accountId, enabled) {
   const mutation = buildToggleRuleQuery(accountId, ruleId, !enabled);
-  console.log('mutation:', mutation);
+  //console.log('mutation:', mutation);
   const res = await NerdGraphMutation.mutate(mutation);
-  console.log('res', res);
+  //console.log('res', res);
   return res;
 }

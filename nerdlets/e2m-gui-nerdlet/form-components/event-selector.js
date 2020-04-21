@@ -47,7 +47,7 @@ class EventSelector extends React.Component {
         });
       })
       .catch(error => {
-        console.log(error);
+        console.log(error); // eslint-disable-line no-console
         Toast.showToast({
           title: 'An error occured while downloading EventTypes',
           description: `You may not be able to select an event type. Please refresh. If this does not fix the issue, contact your account team.`,
@@ -62,7 +62,7 @@ class EventSelector extends React.Component {
     // Since multiple accounts are selected, the event types shown below are aggregated from
     //      all accounts. Each individual account may not have the event types here.
     if (this.state.error) {
-      console.log(this.state.error);
+      console.log(this.state.error); // eslint-disable-line no-console
       return <div>Check console for error</div>;
     } else if (this.state.fetching) {
       return <Spinner />;
