@@ -1,54 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { HeadingText, Button, Modal } from 'nr1';
+import { HeadingText, Button } from 'nr1';
 
 import three from '../../../images/three.png';
-
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const Section3 = ({
   activeStep,
   setActiveStep,
   ruleIsCompletelyValidated,
-  validatedRuleAlias,
-  validatedRuleDescription,
-  createRuleNRQL,
-  selectedAccountID,
-  toggleModal,
-  showModal,
-  closeAddRule,
   createValidatedRule
 }) => {
-  const graphqlQuery = `
-			mutation {
-		        eventsToMetricsCreateRule(rules: {
-		          name: "${validatedRuleAlias}",
-		          description:"${validatedRuleDescription}",
-		          nrql:"${createRuleNRQL}",
-		          accountId: ${selectedAccountID}
-		        })
-		        {
-		          successes {
-		            id
-		            name
-		            nrql
-		            enabled
-		          }
-		          failures {
-		            submitted {
-		              name
-		              nrql
-		              accountId        
-		            }
-		            errors {
-		              reason
-		              description
-		            }
-		          }
-		        }
-		     }
-      `;
   return (
     <div
       className={`sectionWrapper NewRuleButtonWrapper ${

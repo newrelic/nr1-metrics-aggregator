@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Spinner } from 'nr1';
-
 import { getCardinalityForRule } from '../util/cardinality-helper';
 import { toggleMetric } from '../util/async';
 
-import CardinalityViolationColor from './table-components/cardinality-violation';
 import EnableSwitch from './table-components/enable-switch';
 import CardinalityPercent from './table-components/cardinality-percent';
 
@@ -17,7 +14,6 @@ export default class TableWrapper extends React.Component {
     const {
       e2mRulesByMetricName,
       cardinalities,
-      setMetricSelection,
       metricSelection,
       reloadE2MRules,
       filterText

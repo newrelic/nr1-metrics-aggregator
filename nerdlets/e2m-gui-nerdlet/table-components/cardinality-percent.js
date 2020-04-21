@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Switch from 'react-toggle-switch';
 
 import { Spinner } from 'nr1';
-
-import { numberWithCommas } from '../../util/misc';
 
 const CardinalityPercent = ({ cardinality, limit, enabled }) => {
   if (!enabled) {

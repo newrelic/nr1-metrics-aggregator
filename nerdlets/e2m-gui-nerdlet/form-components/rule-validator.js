@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NerdGraphQuery, Spinner, AreaChart, LineChart, Button } from 'nr1';
-
-import { buildCardinalityTimeseriesQuery } from '../../util/graphqlbuilders';
+import { Spinner, LineChart } from 'nr1';
 
 import {
   buildCardinalityChartData,
-  buildCardinalityTotalsChartData,
-  getTimeRangeFromCardinality
+  buildCardinalityTotalsChartData
 } from '../../util/chart-helper';
 
 class RuleValidator extends React.Component {

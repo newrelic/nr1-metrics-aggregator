@@ -1,24 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  AutoSizer,
-  Grid,
-  GridItem,
-  HeadingText,
-  NerdGraphQuery,
-  Toast
-} from 'nr1';
+import { HeadingText, Toast } from 'nr1';
 
 import Section1 from './form-components/section1';
 import Section2 from './form-components/section2';
 import Section3 from './form-components/section3';
 
 import RuleValidator from './form-components/rule-validator';
-
-import {
-  buildCreateNewRuleQuery,
-  buildCardinalityTimeseriesQuery
-} from '../util/graphqlbuilders';
 
 import { createAndSaveNewRule, findRuleViolations } from '../util/async';
 
@@ -199,7 +187,7 @@ export default class AddE2MRule extends React.Component {
       selectedAccountID
     } = this.state;
     const nrql = this.buildOrGetCreateRuleNRQL();
-    const { result, error } = await createAndSaveNewRule(
+    const { error } = await createAndSaveNewRule(
       selectedAccountID,
       nrql,
       validatedRuleAlias,
@@ -334,7 +322,6 @@ export default class AddE2MRule extends React.Component {
       validatingCardinality,
       validatedFilterNRQL,
       validatedRuleAlias,
-      validatedMetricName,
       validatedRuleDescription,
       cardinalityRuleViolation,
       cardinalityAccountViolation,

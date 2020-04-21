@@ -83,9 +83,7 @@ export function buildFilterValidationQuery(
 export function buildCardinalityTimeseriesQuery(
   selectedAccountID,
   eventType,
-  selectedFacetAttributes,
-  since = 0,
-  until = 0
+  selectedFacetAttributes
 ) {
   const query = `{
     actor {
@@ -117,7 +115,7 @@ export function buildCardinalityTimeseriesQueryForBatch(batchQueryInfo) {
                               }
                             }`;
       })}
-      
+
   }}`;
   return { query, fetchPolicyType: NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE };
 }
@@ -173,7 +171,7 @@ export function buildCreateNewRuleQuery(
             submitted {
               name
               nrql
-              accountId        
+              accountId
             }
             errors {
               reason

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, GridItem, Checkbox, NerdGraphQuery, Spinner } from 'nr1';
+import { Grid, GridItem, Checkbox } from 'nr1';
 import { chunk } from '../../util/misc';
 
 class AttributeCheckboxSelector extends React.Component {

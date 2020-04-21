@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { NrqlQuery, NerdGraphQuery, Spinner } from 'nr1';
+import { NrqlQuery, Spinner } from 'nr1';
 
 const ParseRuleHistoryFromAuditData = auditData => {
   let auditDataResponse = [];

@@ -8,13 +8,7 @@ import {
 
 import { parseCardinalityBatchResponse } from './cardinality-helper';
 
-import {
-  parseNRQL,
-  chunk,
-  chunkByKey,
-  makeAccountArrayAnObject,
-  parseE2MMetricRuleListFromResponse
-} from './misc';
+import { parseNRQL, chunk, parseE2MMetricRuleListFromResponse } from './misc';
 
 import {
   buildCardinalityTimeseriesQueryForBatch,

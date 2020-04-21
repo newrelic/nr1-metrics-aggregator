@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Spinner, Toast } from 'nr1';
+import { Toast } from 'nr1';
 import { calculateVolumeReductionForMetric } from '../util/async';
 
 import MetricAttributes from './detail-components/attributes';
@@ -24,6 +24,7 @@ export default class MetricDetails extends React.Component {
     }
   }
 
+  /* eslint-disable no-unused-vars */
   shouldComponentUpdate(nextProps, nextState) {
     if (JSON.stringify(this.state) != JSON.stringify(this.props)) {
       if (!nextProps.rateReduction) {
@@ -33,6 +34,7 @@ export default class MetricDetails extends React.Component {
     }
     return false;
   }
+  /* eslint-enable */
 
   async calculateRateReduction() {
     const {
@@ -61,14 +63,11 @@ export default class MetricDetails extends React.Component {
   render() {
     const {
       metricName,
-      cardinality,
       id,
       name,
       description,
       nrql,
       accountId,
-      eventRate,
-      metricRate,
       enabled
     } = this.props.metric;
     const { rateReduction } = this.props;

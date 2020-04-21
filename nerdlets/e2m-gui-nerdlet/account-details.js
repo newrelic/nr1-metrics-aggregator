@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spinner, AreaChart, LineChart } from 'nr1';
+import { Spinner, LineChart } from 'nr1';
 
 import {
   buildCardinalityChartData,

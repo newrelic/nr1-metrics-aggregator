@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Dropdown,
-  DropdownItem,
-  NerdGraphQuery,
-  Spinner,
-  TextField
-} from 'nr1';
+import { NerdGraphQuery, Spinner, TextField } from 'nr1';
 import FilterAttributeSelector from './filter-attribute-selector';
 import AddFilterIcon from '../../../images/add-filter-icon.png';
 import { buildFilterValidationQuery } from '../../util/graphqlbuilders';
@@ -256,7 +250,7 @@ class FilterSelector extends React.Component {
       return;
     }
     setState({ validating: true });
-    const { data, errors } = await NerdGraphQuery.query(
+    const { data } = await NerdGraphQuery.query(
       buildFilterValidationQuery(nrql, selectedAccountID, selectedEventType)
     );
     try {
@@ -264,7 +258,7 @@ class FilterSelector extends React.Component {
       const queries = Object.keys(data.actor).filter(a => a.includes('query'));
       for (let i = 0; i < queries.length; i++) {
         try {
-          const allNum = data.actor[queries[i]].nrql.results[0].all;
+          // const allNum = data.actor[queries[i]].nrql.results[0].all;
           const filteredNum = data.actor[queries[i]].nrql.results[0].filtered;
           if (!isNaN(filteredNum)) {
             valid = true;

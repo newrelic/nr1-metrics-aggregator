@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 
 import { RadioGroup, Radio } from 'nr1';
 
-const AggregatorSelector = ({
-  selectedAggregator,
-  setAggregator,
-  selectedEventType
-}) => {
+const AggregatorSelector = ({ setAggregator, selectedEventType }) => {
   /* TODO: Pull the disabledOrNotObj out to AddRule Component */
   const disabledOrNotObj = !selectedEventType ? { disabled: true } : {};
   return (

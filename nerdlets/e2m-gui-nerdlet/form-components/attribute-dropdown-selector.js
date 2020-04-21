@@ -38,7 +38,7 @@ class AttributeDropdownSelector extends React.Component {
     NerdGraphQuery.query(
       buildAttributeQueries(selectedAccountID, this.props.selectedEventType)
     )
-      .then(({ data, error }) => {
+      .then(({ data }) => {
         const attributeSet = new Set();
         Object.keys(data.actor)
           .filter(i => i.includes('query'))

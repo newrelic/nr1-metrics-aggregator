@@ -20,10 +20,8 @@ const FilterAttributeSelector = ({
   setAttributeForIndex,
   setOperatorForIndex,
   setValueForIndex,
-  setFilterDetailsForIndex,
   attribute,
   operator,
-  value,
   showRemove,
   removeFilterClicked
 }) => {

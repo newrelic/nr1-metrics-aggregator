@@ -29,7 +29,7 @@ const Section2 = ({
   cardinalityDataLoading
 }) => {
   /* TODO: Pull the disabledOrNotObj out to AddRule Component */
-  const disabledOrNotObj = !selectedEventType ? { disabled: true } : {};
+  // const disabledOrNotObj = !selectedEventType ? { disabled: true } : {};
   return (
     <div
       className={`sectionWrapper ${activeStep == 2 ? 'expand' : 'collapse'}`}

@@ -18,7 +18,7 @@ const AccountSelector = ({ accountsObj, setAccountID, selectedAccountID }) => {
   return (
     <div className="checkboxWrapper">
       <SelectSearch
-        options={accountKeysSorted.map((key, j) => ({
+        options={accountKeysSorted.map(key => ({
           name: accountsObj[key].name,
           value: key
         }))}

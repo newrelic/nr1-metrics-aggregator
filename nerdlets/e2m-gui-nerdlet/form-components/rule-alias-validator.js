@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Spinner, Button } from 'nr1';
+import { TextField, Spinner } from 'nr1';
 
 class RuleAliasValidator extends React.Component {
   constructor(props) {

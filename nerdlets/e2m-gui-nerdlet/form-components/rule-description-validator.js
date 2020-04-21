@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField, Spinner } from 'nr1';
+import { TextField } from 'nr1';
 
 class RuleDescriptionValidator extends React.Component {
   constructor(props) {
@@ -37,9 +37,11 @@ class RuleDescriptionValidator extends React.Component {
     }
   }
 
+  /* eslint-disable no-unused-vars */
   validRuleDescription(name) {
     return true;
   }
+  /* eslint-enable */
 
   readyToSetRuleDescription() {
     return (

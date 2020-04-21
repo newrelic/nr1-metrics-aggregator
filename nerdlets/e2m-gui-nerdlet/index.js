@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  AutoSizer,
   Button,
   Grid,
   GridItem,
@@ -28,10 +27,7 @@ import { getTimeRangeFromCardinality } from '../util/chart-helper';
 
 import {
   getE2MRulesByMetric,
-  parseNRQL,
-  parseE2MMetricRuleListFromResponse,
   makeAccountArrayAnObject,
-  getCardinalityForRule,
   getLastThreeDays
 } from '../util/misc';
 
@@ -251,8 +247,7 @@ export default class E2mGui extends React.Component {
       cardinalities,
       percentCompleteCardLoading,
       cardinalityDataLoading,
-      rateReductions,
-      error
+      rateReductions
     } = this.state;
     const numEnabledRules = !e2mRulesByMetricName
       ? 0
@@ -266,204 +261,195 @@ export default class E2mGui extends React.Component {
         ).length;
     return (
       <div className="OuterMargins">
-        <AutoSizer>
-          {({ width, height }) => (
-            <div>
-              <div className={`AddE2MRuleSlider ${!hidden ? 'show' : ''}`}>
-                {!accountsObj ? (
-                  'Account data did not load. Please contact account team for support.'
-                ) : (
-                  <AddE2MRule
-                    onClose={this.onCloseModalPressed}
-                    accountsObj={accountsObj}
-                    e2mRulesByMetricName={e2mRulesByMetricName}
-                    cardinalityTotals={cardinalityTotals}
-                    cardinalityDataLoading={cardinalityDataLoading}
-                    timerangeArray={this.getTimeRange()}
-                    addNewRuleAndCloseDialog={this.addNewRuleAndCloseDialog}
-                  />
-                )}
-              </div>
-              <Grid>
-                <GridItem columnSpan={8}>
-                  <div className="MainPanel">
-                    <div className="heading-wrapper">
-                      <Grid>
-                        <GridItem columnSpan={10}>
-                          <img className="NerdletLogo" src={icon} />
-                          <HeadingText
-                            className="NerdletHeading"
-                            style={{
-                              color: '#434846 !important'
-                            }}
-                            spacingType={[HeadingText.SPACING_TYPE.SMALL]}
-                            type={HeadingText.TYPE.HEADING_2}
-                          >
-                            Create a new aggregated metric
-                          </HeadingText>
-                        </GridItem>
-                        <GridItem columnSpan={2}>
-                          <div className="pull-right">
-                            <Button
-                              onClick={() =>
-                                this.setState({
-                                  hidden: false
-                                })
-                              }
-                              type={Button.TYPE.PRIMARY}
-                              iconType={
-                                Button.ICON_TYPE
-                                  .DOCUMENTS__DOCUMENTS__NOTES__A_ADD
-                              }
-                            >
-                              Create Rule
-                            </Button>
-                          </div>
-                        </GridItem>
-                      </Grid>
-                    </div>
-                    <div className="subtitle">
-                      Use aggregated metrics rules to reduce long-term storage
-                      costs and increase query speed.
-                    </div>
-                    <div className={!hidden ? 'hidden' : ''}>
-                      {/* When the rules finish loading, show the table if there are
-												already e2m rules. Otherwise, show a warning that they either
-												don't have e2m rules or do not have permissions. */}
-                      {!tableDataLoading ? (
-                        e2mRulesByMetricName.length ? (
-                          <div className="table-container">
-                            <div className="FilterBox">
-                              <TextField
-                                className="FilterTextfield"
-                                onChange={e =>
-                                  this.setTableFilterTimeout(e.target.value)
-                                }
-                                placeholder="Enter filter text..."
-                                type={TextField.TYPE.SEARCH}
-                              />
-                            </div>
-                            <RuleTable
-                              filterText={filterText}
-                              e2mRulesByMetricName={e2mRulesByMetricName}
-                              cardinalities={cardinalities}
-                              setMetricSelection={this.setMetricSelection}
-                              metricSelection={metricSelection}
-                              accountsObj={this.state.accountsObj}
-                              reloadE2MRules={this.reloadE2MRules}
-                            />
-                            Your accounts have{' '}
-                            {
-                              e2mRulesByMetricName.filter(rule => rule.enabled)
-                                .length
-                            }{' '}
-                            metric aggregations from {numEnabledRules}
-                            &nbsp;enabled rules.
-                          </div>
-                        ) : (
-                          <div className="NoRulesFound">
-                            <i>
-                              We did not find any E2M rules for this account.
-                              Possible reasons:
-                            </i>
-                            <br />
-                            <br />
-                            <ol className="norules">
-                              <li>
-                                Your accounts have not created any metric
-                                aggregation rules yet.
-                              </li>
-                              <li>
-                                Or, you do not have the necessary permission to
-                                manage metric aggregation for your accounts.
-                              </li>
-                            </ol>{' '}
-                            <br />
-                            <br />
-                            If you feel this is in error, please reach out to
-                            your account team or{' '}
-                            <a href="https://support.newrelic.com">
-                              Technical Support
-                            </a>
-                            .
-                          </div>
-                        )
-                      ) : (
-                        <Spinner />
-                      )}
-                    </div>
-                  </div>
-                </GridItem>
-                <GridItem columnSpan={4}>
-                  {!tableDataLoading && !e2mRulesByMetricName.length ? (
-                    <div />
-                  ) : (
-                    <div className="DetailPanel">
-                      {/* Show the overall account details by default
-											and the indidvidual metric details after
-											clicks on a table row. */}
-                      {!metricSelection ? (
-                        <AccountDetails
-                          cardinalities={cardinalities}
-                          cardinalityTotals={cardinalityTotals}
-                          timerangeArray={this.getTimeRange()}
-                          percentCompleteCardLoading={
-                            percentCompleteCardLoading
-                          }
-                          cardinalityDataLoading={cardinalityDataLoading}
-                          numberOfRules={
-                            e2mRulesByMetricName
-                              ? e2mRulesByMetricName.length
-                              : 0
-                          }
-                          refreshCardinality={() =>
-                            this.loadCardinality(e2mRules, accountsObj, true)
-                          }
-                        />
-                      ) : (
-                        <MetricDetails
-                          metric={metricSelection}
-                          rateReduction={
-                            !rateReductions
-                              ? null
-                              : rateReductions[
-                                  `${metricSelection.id}${metricSelection.metricName}`
-                                ]
-                          }
-                          clearSelectedMetric={() =>
+        <div>
+          <div className={`AddE2MRuleSlider ${!hidden ? 'show' : ''}`}>
+            {!accountsObj ? (
+              'Account data did not load. Please contact account team for support.'
+            ) : (
+              <AddE2MRule
+                onClose={this.onCloseModalPressed}
+                accountsObj={accountsObj}
+                e2mRulesByMetricName={e2mRulesByMetricName}
+                cardinalityTotals={cardinalityTotals}
+                cardinalityDataLoading={cardinalityDataLoading}
+                timerangeArray={this.getTimeRange()}
+                addNewRuleAndCloseDialog={this.addNewRuleAndCloseDialog}
+              />
+            )}
+          </div>
+          <Grid>
+            <GridItem columnSpan={8}>
+              <div className="MainPanel">
+                <div className="heading-wrapper">
+                  <Grid>
+                    <GridItem columnSpan={10}>
+                      <img className="NerdletLogo" src={icon} />
+                      <HeadingText
+                        className="NerdletHeading"
+                        style={{
+                          color: '#434846 !important'
+                        }}
+                        spacingType={[HeadingText.SPACING_TYPE.SMALL]}
+                        type={HeadingText.TYPE.HEADING_2}
+                      >
+                        Create a new aggregated metric
+                      </HeadingText>
+                    </GridItem>
+                    <GridItem columnSpan={2}>
+                      <div className="pull-right">
+                        <Button
+                          onClick={() =>
                             this.setState({
-                              metricSelection: null
+                              hidden: false
                             })
                           }
-                          addRateReductionsForMetric={(
-                            eventRate,
-                            metricRate,
-                            metric
-                          ) => {
-                            // Add rate reduction with key:
-                            //   ruleidmetricname
-                            const theRateReductions = {
-                              ...rateReductions
-                            };
-                            theRateReductions[
-                              `${metric.id}${metric.metricName}`
-                            ] = {
-                              eventRate,
-                              metricRate
-                            };
-                            this.setState({
-                              rateReductions: theRateReductions
-                            });
-                          }}
+                          type={Button.TYPE.PRIMARY}
+                          iconType={
+                            Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__NOTES__A_ADD
+                          }
+                        >
+                          Create Rule
+                        </Button>
+                      </div>
+                    </GridItem>
+                  </Grid>
+                </div>
+                <div className="subtitle">
+                  Use aggregated metrics rules to reduce long-term storage costs
+                  and increase query speed.
+                </div>
+                <div className={!hidden ? 'hidden' : ''}>
+                  {/* When the rules finish loading, show the table if there are
+												already e2m rules. Otherwise, show a warning that they either
+												don't have e2m rules or do not have permissions. */}
+                  {!tableDataLoading ? (
+                    e2mRulesByMetricName.length ? (
+                      <div className="table-container">
+                        <div className="FilterBox">
+                          <TextField
+                            className="FilterTextfield"
+                            onChange={e =>
+                              this.setTableFilterTimeout(e.target.value)
+                            }
+                            placeholder="Enter filter text..."
+                            type={TextField.TYPE.SEARCH}
+                          />
+                        </div>
+                        <RuleTable
+                          filterText={filterText}
+                          e2mRulesByMetricName={e2mRulesByMetricName}
+                          cardinalities={cardinalities}
+                          setMetricSelection={this.setMetricSelection}
+                          metricSelection={metricSelection}
+                          accountsObj={this.state.accountsObj}
+                          reloadE2MRules={this.reloadE2MRules}
                         />
-                      )}
-                    </div>
+                        Your accounts have{' '}
+                        {
+                          e2mRulesByMetricName.filter(rule => rule.enabled)
+                            .length
+                        }{' '}
+                        metric aggregations from {numEnabledRules}
+                        &nbsp;enabled rules.
+                      </div>
+                    ) : (
+                      <div className="NoRulesFound">
+                        <i>
+                          We did not find any E2M rules for this account.
+                          Possible reasons:
+                        </i>
+                        <br />
+                        <br />
+                        <ol className="norules">
+                          <li>
+                            Your accounts have not created any metric
+                            aggregation rules yet.
+                          </li>
+                          <li>
+                            Or, you do not have the necessary permission to
+                            manage metric aggregation for your accounts.
+                          </li>
+                        </ol>{' '}
+                        <br />
+                        <br />
+                        If you feel this is in error, please reach out to your
+                        account team or{' '}
+                        <a href="https://support.newrelic.com">
+                          Technical Support
+                        </a>
+                        .
+                      </div>
+                    )
+                  ) : (
+                    <Spinner />
                   )}
-                </GridItem>
-              </Grid>
-            </div>
-          )}
-        </AutoSizer>
+                </div>
+              </div>
+            </GridItem>
+            <GridItem columnSpan={4}>
+              {!tableDataLoading && !e2mRulesByMetricName.length ? (
+                <div />
+              ) : (
+                <div className="DetailPanel">
+                  {/* Show the overall account details by default
+											and the indidvidual metric details after
+											clicks on a table row. */}
+                  {!metricSelection ? (
+                    <AccountDetails
+                      cardinalities={cardinalities}
+                      cardinalityTotals={cardinalityTotals}
+                      timerangeArray={this.getTimeRange()}
+                      percentCompleteCardLoading={percentCompleteCardLoading}
+                      cardinalityDataLoading={cardinalityDataLoading}
+                      numberOfRules={
+                        e2mRulesByMetricName ? e2mRulesByMetricName.length : 0
+                      }
+                      refreshCardinality={() =>
+                        this.loadCardinality(e2mRules, accountsObj, true)
+                      }
+                    />
+                  ) : (
+                    <MetricDetails
+                      metric={metricSelection}
+                      rateReduction={
+                        !rateReductions
+                          ? null
+                          : rateReductions[
+                              `${metricSelection.id}${metricSelection.metricName}`
+                            ]
+                      }
+                      clearSelectedMetric={() =>
+                        this.setState({
+                          metricSelection: null
+                        })
+                      }
+                      addRateReductionsForMetric={(
+                        eventRate,
+                        metricRate,
+                        metric
+                      ) => {
+                        // Add rate reduction with key:
+                        //   ruleidmetricname
+                        const theRateReductions = {
+                          ...rateReductions
+                        };
+                        theRateReductions[
+                          `${metric.id}${metric.metricName}`
+                        ] = {
+                          eventRate,
+                          metricRate
+                        };
+                        this.setState({
+                          rateReductions: theRateReductions
+                        });
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+            </GridItem>
+          </Grid>
+        </div>
       </div>
     );
   }
