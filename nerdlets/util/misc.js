@@ -43,7 +43,9 @@ export function getE2MRulesByMetric(e2mRules) {
   }
   const rulesByMetric = [];
   e2mRules.forEach(rule => {
+    /* eslint-disable no-useless-escape */
     const metricNames = rule.nrql.match(/\sas\s*\'([^\']*)\'/gi);
+
     metricNames.forEach(name => {
       const ruByMetric = { ...rule };
       ruByMetric.metricName = name
@@ -55,6 +57,7 @@ export function getE2MRulesByMetric(e2mRules) {
         .replace(/\s*\'/gi, '');
       rulesByMetric.push(ruByMetric);
     });
+    /* eslint-enable */
   });
   return rulesByMetric;
 }
@@ -119,6 +122,7 @@ export function parseNRQL(nrql) {
     facets: null,
     wheres: null
   };
+  /* eslint-disable no-useless-escape */
   const eventMatches = `${nrql}`.match(/from\s*([\`a-zA-Z\_0-9]*)/gi);
   nrqlDict.eventType =
     eventMatches && eventMatches.length
@@ -136,7 +140,7 @@ export function parseNRQL(nrql) {
           .split(',')
           .map(facet => facet.trim())
       : null;
-
+  /* eslint-enable */
   const wherematches = getWheres(nrql).join(' ');
   nrqlDict.wheres = wherematches || '';
 

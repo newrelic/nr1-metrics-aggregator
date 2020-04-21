@@ -23,8 +23,9 @@ class MetricNameValidator extends React.Component {
 
   setMetricName(userInputtedMetricName) {
     /* Remove dangerous characters from name */
+    /* eslint-disable no-useless-escape */
     const metricName = userInputtedMetricName.replace(/[^a-zA-Z0-9\.]/g, '');
-
+    /* eslint-enable */
     if (this.validMetricName(metricName)) {
       this.props.setValidatedMetricName(metricName);
       this.setState({ metricName, valid: true });
@@ -103,6 +104,7 @@ class MetricNameValidator extends React.Component {
     const disabledOrNotObj = !this.readyToSetMetricName()
       ? { disabled: true }
       : {};
+
     return (
       <div className="validator">
         <TextField /* Don't display dangerous characters in name */
