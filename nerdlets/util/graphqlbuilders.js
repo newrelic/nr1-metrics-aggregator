@@ -33,7 +33,7 @@ export function buildRulesQuery(accountArray) {
     }
   }`;
   const getRulesInnerQuery = `
-    query!!ID!!: account(id: !!ID!!) {
+  query!!ID!!: account(id: !!ID!!) {
       eventsToMetrics {
         allRules {
           rules {

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.6.1",
+    "@newrelic/nr1-community": "^1.1.1",
     "material-table": "^1.36.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

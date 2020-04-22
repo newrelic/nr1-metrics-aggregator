@@ -42,8 +42,8 @@ const DEFAULT_STATE = {
   hidden: true,
   metricSelection: null,
   rateReductions: {},
-  tableDataLoading: false,
-  cardinalityDataLoading: false,
+  tableDataLoading: true,
+  cardinalityDataLoading: true,
   percentCompleteCardLoading: 0,
   error: null
 };
@@ -194,7 +194,6 @@ export default class E2mGui extends React.Component {
   }
 
   async reloadE2MRules() {
-    this.setState({ tableDataLoading: true, cardinalityDataLoading: true });
     try {
       const accounts = await getAccountsForUser();
       const accountsObj = makeAccountArrayAnObject(accounts);
@@ -328,7 +327,7 @@ export default class E2mGui extends React.Component {
                   {/* When the rules finish loading, show the table if there are
 												already e2m rules. Otherwise, show a warning that they either
 												don't have e2m rules or do not have permissions. */}
-                  {!tableDataLoading ? (
+                  {!tableDataLoading ? ( e2mRulesByMetricName &&
                     e2mRulesByMetricName.length ? (
                       <div className="table-container">
                         <div className="FilterBox">
@@ -352,8 +351,8 @@ export default class E2mGui extends React.Component {
                         />
                         Your accounts have{' '}
                         {
-                          e2mRulesByMetricName.filter(rule => rule.enabled)
-                            .length
+                          e2mRulesByMetricName ? e2mRulesByMetricName.filter(rule => rule.enabled)
+                            .length : 0
                         }{' '}
                         metric aggregations from {numEnabledRules}
                         &nbsp;enabled rules.
@@ -393,7 +392,7 @@ export default class E2mGui extends React.Component {
               </div>
             </GridItem>
             <GridItem columnSpan={4}>
-              {!tableDataLoading && !e2mRulesByMetricName.length ? (
+              {!tableDataLoading && e2mRulesByMetricName != null &&e2mRulesByMetricName.length ? (
                 <div />
               ) : (
                 <div className="DetailPanel">

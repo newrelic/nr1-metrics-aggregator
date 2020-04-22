@@ -119,9 +119,9 @@ const Section2 = ({
 
 Section2.propTypes = {
   activeStep: PropTypes.number.isRequired,
-  nameTextfield: PropTypes.string,
-  aliasTextfield: PropTypes.string,
-  descriptionTextfield: PropTypes.string,
+  nameTextfield: PropTypes.object,
+  aliasTextfield: PropTypes.object,
+  descriptionTextfield: PropTypes.object,
   setActiveStep: PropTypes.func.isRequired,
   selectedAccountID: PropTypes.string,
   selectedEventType: PropTypes.string,

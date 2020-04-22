@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { NrqlQuery, Spinner } from 'nr1';
+import { NerdGraphError } from '@newrelic/nr1-community';
 
 const ParseRuleHistoryFromAuditData = auditData => {
   let auditDataResponse = [];
@@ -42,7 +43,7 @@ const RuleHistory = ({ ruleId, accountId }) => {
             return <Spinner />;
           }
           if (error) {
-            return `Error: ${error}`;
+            return <NerdGraphError error={error} />
           }
 
           return ParseRuleHistoryFromAuditData(data);
