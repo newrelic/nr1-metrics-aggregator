@@ -254,7 +254,6 @@ export default class E2mGui extends React.Component {
       rateReductions
     } = this.state;
 
-    console.log(`tableDataLoading`, tableDataLoading, `e2mRulesByMetricName`, e2mRulesByMetricName)
 
     const numEnabledRules = !e2mRulesByMetricName
       ? 0
