@@ -1,4 +1,4 @@
-import { NerdGraphQuery } from "nr1";
+import { NerdGraphQuery } from 'nr1';
 
 export function buildEventTypeQueries(selectedAccountID) {
   const query = `{
@@ -33,7 +33,7 @@ export function buildRulesQuery(accountArray) {
     }
   }`;
   const getRulesInnerQuery = `
-    query!!ID!!: account(id: !!ID!!) {
+  query!!ID!!: account(id: !!ID!!) {
       eventsToMetrics {
         allRules {
           rules {
@@ -51,9 +51,9 @@ export function buildRulesQuery(accountArray) {
   const innerQueriesArray = accountArray.map(d =>
     getRulesInnerQuery.replace(/!!ID!!/g, d.id)
   );
-  const innerQueriesString = innerQueriesArray.join(" ");
+  const innerQueriesString = innerQueriesArray.join(' ');
   const getRulesQuery = getRulesOuterQuery.replace(
-    "!!INNER_QUERIES!!",
+    '!!INNER_QUERIES!!',
     innerQueriesString
   );
   return {
@@ -83,9 +83,7 @@ export function buildFilterValidationQuery(
 export function buildCardinalityTimeseriesQuery(
   selectedAccountID,
   eventType,
-  selectedFacetAttributes,
-  since = 0,
-  until = 0
+  selectedFacetAttributes
 ) {
   const query = `{
     actor {
@@ -93,7 +91,7 @@ export function buildCardinalityTimeseriesQuery(
         nrql(query: "FROM ${eventType} SELECT uniqueCount(${selectedFacetAttributes
     .map(facet => `\`${facet}\``)
     .join(
-      ", "
+      ', '
     )}) AS 'cardinality' SINCE 3 days ago TIMESERIES 1 day", timeout: 300) {
           results
         }
@@ -109,15 +107,15 @@ export function buildCardinalityTimeseriesQueryForBatch(batchQueryInfo) {
       ${batchQueryInfo.map((queryInfo, index) => {
         const { accountId, eventType, facets, wheres } = queryInfo;
         const selection = !facets
-          ? "1"
-          : `uniqueCount(${facets.map(facet => `\`${facet}\``).join(", ")})`;
+          ? '1'
+          : `uniqueCount(${facets.map(facet => `\`${facet}\``).join(', ')})`;
         return `query${index}: account(id: ${accountId}) {
                   nrql(query: "FROM ${eventType} SELECT ${selection} AS 'cardinality' ${wheres} SINCE 3 days ago TIMESERIES 1 day", timeout: 250) {
                                 results
                               }
                             }`;
       })}
-      
+
   }}`;
   return { query, fetchPolicyType: NerdGraphQuery.FETCH_POLICY_TYPE.NO_CACHE };
 }
@@ -146,14 +144,14 @@ export function buildToggleRuleQuery(accountId, ruleId, enabled) {
     }
   }
 }`;
-  return { mutation }
+  return { mutation };
 }
 
 export function buildCreateNewRuleQuery(
   accountId,
   ruleNRQL,
   ruleAlias,
-  ruleDescription = ""
+  ruleDescription = ''
 ) {
   const template = `mutation {
         eventsToMetricsCreateRule(rules: {
@@ -173,7 +171,7 @@ export function buildCreateNewRuleQuery(
             submitted {
               name
               nrql
-              accountId        
+              accountId
             }
             errors {
               reason
