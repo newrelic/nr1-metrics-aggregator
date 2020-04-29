@@ -2,6 +2,28 @@
   "private": true,
   "name": "e2m-gui",
   "description": "Nerdpack e2m-gui",
+  "author": {
+    "name": "Jake Neal",
+    "email": "jneal@newrelic.com"
+  },
+  "contributors": [
+    {
+      "name": "Melinda Campbell",
+      "email": "melindacampbell@newrelic.com"
+    },
+    {
+      "name": "Joel Worral",
+      "email": "jworral@newrelic.com"
+    },
+    {
+      "name": "Peter Simkins",
+      "email": "psimkins@newrelic.com"
+    },
+    {
+      "name": "Ward Cunningham",
+      "email": "ward@newrelic.com"
+    }
+  ],
   "version": "0.7.0",
   "scripts": {
     "start": "nr1 nerdpack:serve",
