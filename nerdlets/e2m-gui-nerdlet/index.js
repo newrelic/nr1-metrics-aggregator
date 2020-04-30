@@ -253,6 +253,8 @@ export default class E2mGui extends React.Component {
       cardinalityDataLoading,
       rateReductions
     } = this.state;
+
+
     const numEnabledRules = !e2mRulesByMetricName
       ? 0
       : Object.keys(
@@ -392,7 +394,7 @@ export default class E2mGui extends React.Component {
               </div>
             </GridItem>
             <GridItem columnSpan={4}>
-              {!tableDataLoading && e2mRulesByMetricName != null &&e2mRulesByMetricName.length ? (
+              {!tableDataLoading && (e2mRulesByMetricName == null || !e2mRulesByMetricName.length) ? (
                 <div />
               ) : (
                 <div className="DetailPanel">

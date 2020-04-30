@@ -3,7 +3,7 @@ export function getCardinalityForRule(cardinalities, accountId, ruleId) {
     return null;
   }
   const cardinalityForAccount = cardinalities.find(
-    cByAccount => accountId && cByAccount && cByAccount.accountId === accountId
+    cByAccount => accountId && cByAccount && `${cByAccount.accountId}` === `${accountId}`
   );
   if (!cardinalityForAccount) {
     return 0;
