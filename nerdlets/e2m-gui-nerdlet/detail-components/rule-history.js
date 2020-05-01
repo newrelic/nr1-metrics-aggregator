@@ -43,7 +43,7 @@ const RuleHistory = ({ ruleId, accountId }) => {
             return <Spinner />;
           }
           if (error) {
-            return <NerdGraphError error={error} />
+            return <NerdGraphError error={error} />;
           }
 
           return ParseRuleHistoryFromAuditData(data);

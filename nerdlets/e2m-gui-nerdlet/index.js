@@ -254,7 +254,6 @@ export default class E2mGui extends React.Component {
       rateReductions
     } = this.state;
 
-
     const numEnabledRules = !e2mRulesByMetricName
       ? 0
       : Object.keys(
@@ -329,8 +328,8 @@ export default class E2mGui extends React.Component {
                   {/* When the rules finish loading, show the table if there are
 												already e2m rules. Otherwise, show a warning that they either
 												don't have e2m rules or do not have permissions. */}
-                  {!tableDataLoading ? ( e2mRulesByMetricName &&
-                    e2mRulesByMetricName.length ? (
+                  {!tableDataLoading ? (
+                    e2mRulesByMetricName && e2mRulesByMetricName.length ? (
                       <div className="table-container">
                         <div className="FilterBox">
                           <TextField
@@ -352,10 +351,10 @@ export default class E2mGui extends React.Component {
                           reloadE2MRules={this.reloadE2MRules}
                         />
                         Your accounts have{' '}
-                        {
-                          e2mRulesByMetricName ? e2mRulesByMetricName.filter(rule => rule.enabled)
-                            .length : 0
-                        }{' '}
+                        {e2mRulesByMetricName
+                          ? e2mRulesByMetricName.filter(rule => rule.enabled)
+                              .length
+                          : 0}{' '}
                         metric aggregations from {numEnabledRules}
                         &nbsp;enabled rules.
                       </div>
@@ -394,7 +393,8 @@ export default class E2mGui extends React.Component {
               </div>
             </GridItem>
             <GridItem columnSpan={4}>
-              {!tableDataLoading && (e2mRulesByMetricName == null || !e2mRulesByMetricName.length) ? (
+              {!tableDataLoading &&
+              (e2mRulesByMetricName == null || !e2mRulesByMetricName.length) ? (
                 <div />
               ) : (
                 <div className="DetailPanel">
