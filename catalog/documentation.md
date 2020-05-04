@@ -11,7 +11,7 @@ This 3-minute video demonstrates how you can adjust your New Relic Event retenti
 
 ## Open Source License
 
-This project is distributed under the [Apache 2 license](https://github.com/newrelic/nr1-metrics-aggregator/blob/master//LICENSE).
+This project is distributed under the [Apache 2 license](https://github.com/newrelic/nr1-metrics-aggregator/blob/master/LICENSE).
 
 ## Dependencies
 
