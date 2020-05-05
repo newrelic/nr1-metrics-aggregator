@@ -1,7 +1,7 @@
 {
   "tagline": "Events To Metrics",
   "repository": "https://github.com/newrelic/nr1-metrics-aggregator.git",
-  "details": "The Metric Aggregator is a New Relic ONE Application that helps you create an Event To Metric (E2M) rule. Events-to-metrics is a New Relic real-time streaming service that converts event data into dimensional metrics at ingest. New Relic stores these Metrics for 13+ months used for long-term trending",
+  "details": "The Metric Aggregator is a New Relic One Application that helps you create an Event To Metric (E2M) rule. Events-to-metrics is a New Relic real-time streaming service that converts event data into dimensional metrics at ingest. New Relic stores these Metrics for 13+ months so they can be used for long-term trending.",
   "support": {
     "issues": {
       "url": "https://github.com/newrelic/nr1-metrics-aggregator/issues"
@@ -13,5 +13,5 @@
       "url": " https://discuss.newrelic.com/t/metric-aggregator-nerdpack/101069"
     }
   },
-  "whatsNew": "- Disable or enable E2M rules /n/n - Check Metric cardinality as you create your E2M rule /n/n - Filter E2M rules "
+  "whatsNew": "- Disable or enable E2M rules \n\n - Check Metric cardinality as you create your E2M rule \n\n - Filter E2M rules"
 }
