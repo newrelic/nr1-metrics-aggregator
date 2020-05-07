@@ -379,11 +379,7 @@ export default class E2mGui extends React.Component {
                         <br />
                         <br />
                         If you feel this is in error, please reach out to your
-                        account team or{' '}
-                        <a href="https://support.newrelic.com">
-                          Technical Support
-                        </a>
-                        .
+                        account team.
                       </div>
                     )
                   ) : (
