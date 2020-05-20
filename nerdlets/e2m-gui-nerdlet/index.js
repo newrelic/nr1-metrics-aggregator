@@ -183,7 +183,7 @@ export default class E2mGui extends React.Component {
         cardinalityDataLoading: false
       });
     } catch (error) {
-      console.log('error:', error); // eslint-disable-line no-console
+      console.log('error loading cardinality', error); // eslint-disable-line no-console
       this.setState({ cardinalityDataLoading: false, error }); // eslint-disable-line react/no-unused-state
     }
   }
@@ -207,6 +207,7 @@ export default class E2mGui extends React.Component {
       });
       this.loadCardinality(e2mRules, accountsObj);
     } catch (error) {
+      console.log('error loading e2m rules', error); // eslint-disable-line no-console
       Toast.showToast({
         title: 'An error occured',
         description: `This nerdlet may not display properly.\n\nDetails: ${JSON.stringify(
