@@ -61,9 +61,9 @@ export function getE2MRulesByMetric(e2mRules) {
       /* eslint-enable */
     });
   } catch (error) {
-    console.log('error getting rule by metric', error);  // eslint-disable-line no-console
+    console.log('error getting rule by metric', error); // eslint-disable-line no-console
   }
-  
+
   return rulesByMetric;
 }
 
@@ -157,18 +157,17 @@ export function parseE2MMetricRuleListFromResponse(data) {
   if (data && 'actor' in data) {
     try {
       Object.keys(data.actor)
-      .filter(item => item.includes('query'))
-      .forEach(key => {
-        if (data.actor[key].eventsToMetrics) {
-          data.actor[key].eventsToMetrics.allRules.rules.forEach(rule => {
-            metricRuleList.push(rule);
-          });
-        }
-      });
-    } catch(error) {
+        .filter(item => item.includes('query'))
+        .forEach(key => {
+          if (data.actor[key].eventsToMetrics) {
+            data.actor[key].eventsToMetrics.allRules.rules.forEach(rule => {
+              metricRuleList.push(rule);
+            });
+          }
+        });
+    } catch (error) {
       console.log('error parsing metrics', error); // eslint-disable-line no-console
     }
-    
   }
 
   return metricRuleList;
