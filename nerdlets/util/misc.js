@@ -45,7 +45,7 @@ export function getE2MRulesByMetric(e2mRules) {
   try {
     e2mRules.forEach(rule => {
       /* eslint-disable no-useless-escape */
-      const metricNames = rule.nrql.match(/\sas\s*\'([^\']*)\'/gi);
+      const metricNames = rule.nrql.match(/\sas\s*[\'\`]([^\'\`]*)[\'\`]/gi);
 
       if (metricNames) {
         metricNames.forEach(name => {
