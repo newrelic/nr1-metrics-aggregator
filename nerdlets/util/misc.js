@@ -42,23 +42,28 @@ export function getE2MRulesByMetric(e2mRules) {
     return [];
   }
   const rulesByMetric = [];
-  e2mRules.forEach(rule => {
-    /* eslint-disable no-useless-escape */
-    const metricNames = rule.nrql.match(/\sas\s*\'([^\']*)\'/gi);
+  try {
+    e2mRules.forEach(rule => {
+      /* eslint-disable no-useless-escape */
+      const metricNames = rule.nrql.match(/\sas\s*\'([^\']*)\'/gi);
 
-    metricNames.forEach(name => {
-      const ruByMetric = { ...rule };
-      ruByMetric.metricName = name
-        .replace(' as ', '')
-        .replace(
-          ' AS ',
-          ''
-        ) /* TODO: I'm sure there's a better way to leverage regex capturing groups */
-        .replace(/\s*\'/gi, '');
-      rulesByMetric.push(ruByMetric);
+      metricNames.forEach(name => {
+        const ruByMetric = { ...rule };
+        ruByMetric.metricName = name
+          .replace(' as ', '')
+          .replace(
+            ' AS ',
+            ''
+          ) /* TODO: I'm sure there's a better way to leverage regex capturing groups */
+          .replace(/\s*\'/gi, '');
+        rulesByMetric.push(ruByMetric);
+      });
+      /* eslint-enable */
     });
-    /* eslint-enable */
-  });
+  } catch (error) {
+    console.log('error getting rule by metric', error);  // eslint-disable-line no-console
+  }
+  
   return rulesByMetric;
 }
 
@@ -150,7 +155,8 @@ export function parseNRQL(nrql) {
 export function parseE2MMetricRuleListFromResponse(data) {
   const metricRuleList = [];
   if (data && 'actor' in data) {
-    Object.keys(data.actor)
+    try {
+      Object.keys(data.actor)
       .filter(item => item.includes('query'))
       .forEach(key => {
         if (data.actor[key].eventsToMetrics) {
@@ -159,6 +165,10 @@ export function parseE2MMetricRuleListFromResponse(data) {
           });
         }
       });
+    } catch(error) {
+      console.log('error parsing metrics', error); // eslint-disable-line no-console
+    }
+    
   }
 
   return metricRuleList;
