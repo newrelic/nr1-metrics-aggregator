@@ -294,7 +294,7 @@ export async function loadCardinalityForAllEnabledRules(
   return cardinalitiesForAccount;
 }
 
-const CARDINALITY_LIMIT_PER_RULE = 20000;
+const CARDINALITY_LIMIT_PER_RULE = 50000;
 const CARDINALITY_LIMIT_PER_ACCOUNT = 5000000;
 
 function determineRuleCardinalityViolation(results) {

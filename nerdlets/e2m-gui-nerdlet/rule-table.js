@@ -7,7 +7,7 @@ import { toggleMetric } from '../util/async';
 import EnableSwitch from './table-components/enable-switch';
 import CardinalityPercent from './table-components/cardinality-percent';
 
-const CARDINALITY_LIMIT = 20000;
+const CARDINALITY_LIMIT = 50000;
 
 export default class TableWrapper extends React.Component {
   render() {
