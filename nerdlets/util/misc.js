@@ -160,9 +160,14 @@ export function parseE2MMetricRuleListFromResponse(data) {
         .filter(item => item.includes('query'))
         .forEach(key => {
           if (data.actor[key].eventsToMetrics) {
-            data.actor[key].eventsToMetrics.allRules.rules.forEach(rule => {
-              metricRuleList.push(rule);
-            });
+            try {
+              data.actor[key].eventsToMetrics.allRules.rules.forEach(rule => {
+                metricRuleList.push(rule);
+              });
+            } catch(error) {
+              console.log('error pulling rule', error) // eslint-disable-line no-console
+            }
+            
           }
         });
     } catch (error) {
