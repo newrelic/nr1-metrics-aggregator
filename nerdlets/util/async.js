@@ -146,9 +146,7 @@ async function storeRuleCardinalityIfOtherCardinalityStored(accountId, rule) {
     accountId,
     [rule],
     () => true,
-    e => {
-      console.log(e); // eslint-disable-line no-console
-    }
+    () => true
   );
 
   // Add new cardinality to list
@@ -190,59 +188,128 @@ export async function getAccountsForUser() {
   return data;
 }
 
+function parseAndAddNewCardinality(
+  data,
+  batchOfRules,
+  cardinalitiesForAccount,
+  onCardinalityAdded
+) {
+  const timeseriesArray = parseCardinalityBatchResponse(data);
+  for (let j = 0; j < timeseriesArray.length; j++) {
+    const cardinalityTimeseries = timeseriesArray[j];
+    const rule = batchOfRules[j];
+    const beginTimeSeconds = cardinalityTimeseries.map(
+      obj => obj.beginTimeSeconds
+    );
+    const cardinality = cardinalityTimeseries.map(
+      cardinalityObj => cardinalityObj.cardinality
+    );
+    cardinalitiesForAccount.beginTimeSeconds = beginTimeSeconds;
+    cardinalitiesForAccount.cardinalities.push({
+      id: rule.id,
+      cardinality
+    });
+  }
+  onCardinalityAdded(cardinalitiesForAccount);
+  return cardinalitiesForAccount;
+}
+
+async function processBatchOfCardinalities(
+  batchOfRules,
+  accountId,
+  errorCount,
+  maxVisibileErrors,
+  cardinalitiesForAccount,
+  batchSize,
+  onCardinalityAdded,
+  onError
+) {
+  try {
+    const { data, errors } = await calculateCardinalityForRuleBatch(
+      batchOfRules,
+      accountId
+    );
+    if (errors) {
+      /* eslint-disable no-console */
+      console.log(
+        'error loading cardinality with batch',
+        JSON.stringify(errors)
+      );
+      /* eslint-enable */
+      errorCount = errorCount + 1;
+      if (batchSize === 1 && errorCount < maxVisibileErrors) {
+        onError(JSON.stringify(errors));
+      }
+      // If there was an error process each rule 1 by 1
+      //    and reduce the batchSize to 1 for future calculations
+      for (let i = 0; i < batchOfRules.length; i++) {
+        cardinalitiesForAccount = processBatchOfCardinalities(
+          [batchOfRules[i]],
+          accountId,
+          errorCount,
+          maxVisibileErrors,
+          cardinalitiesForAccount,
+          batchSize,
+          onCardinalityAdded,
+          onError
+        );
+      }
+
+      batchSize = 1;
+    } else if (data) {
+      cardinalitiesForAccount = parseAndAddNewCardinality(
+        data,
+        batchOfRules,
+        cardinalitiesForAccount,
+        onCardinalityAdded
+      );
+    }
+  } catch (error) {
+    console.log('Uncaught error processing cardinality', error); // eslint-disable-line no-console
+    if (errorCount < maxVisibileErrors) {
+      onError(error);
+    }
+  }
+  return { cardinalitiesForAccount, batchSize };
+}
+
 async function calculateCardinalityForEnabledRulesForAccount(
   accountId,
   e2mRulesForAccount,
-  addBatchOfCardinalitiesForAccount,
+  onCardinalityAdded,
   onError
 ) {
-  const cardinalitiesForAccount = {
+  let cardinalitiesForAccount = {
     beginTimeSeconds: [],
     accountId,
     cardinalities: []
   };
-  const BATCH_SIZE = 5;
-  const ruleBatchArray = chunk(e2mRulesForAccount, BATCH_SIZE);
+  let batchSize = 5;
+  const maxVisibileErrors = 1; // After displaying one error, we will silently log the remainder
+  const ruleBatchArray = chunk(e2mRulesForAccount, batchSize);
+  const errorCount = 0;
   for (let i = 0; i < ruleBatchArray.length; i++) {
-    try {
-      const batchOfRules = ruleBatchArray[i];
-      const { data, errors } = await calculateCardinalityForRuleBatch(
-        batchOfRules,
-        accountId
-      );
-      if (errors) {
-        onError(JSON.stringify(errors));
-      } else if (!data) {
-        onError('No cardinality data returned');
-      } else {
-        const timeseriesArray = parseCardinalityBatchResponse(data);
-        for (let j = 0; j < timeseriesArray.length; j++) {
-          const cardinalityTimeseries = timeseriesArray[j];
-          const rule = batchOfRules[j];
-          const beginTimeSeconds = cardinalityTimeseries.map(
-            obj => obj.beginTimeSeconds
-          );
-          const cardinality = cardinalityTimeseries.map(
-            cardinalityObj => cardinalityObj.cardinality
-          );
-          cardinalitiesForAccount.beginTimeSeconds = beginTimeSeconds;
-          cardinalitiesForAccount.cardinalities.push({
-            id: rule.id,
-            cardinality
-          });
-          /* eslint-disable no-console */
-          console.log(
-            `${accountId} rule ${i * BATCH_SIZE + 1 + j} / ${
-              e2mRulesForAccount.length
-            }`
-          );
-          /* eslint-enable */
-        }
-        addBatchOfCardinalitiesForAccount(cardinalitiesForAccount);
-      }
-    } catch (error) {
-      onError(error);
-    }
+    const response = await processBatchOfCardinalities(
+      ruleBatchArray[i],
+      accountId,
+      errorCount,
+      maxVisibileErrors,
+      cardinalitiesForAccount,
+      batchSize,
+      onCardinalityAdded,
+      onError
+    );
+
+    cardinalitiesForAccount = response.cardinalitiesForAccount;
+    batchSize = response.batchSize; // processBatchOfCardinalities() can reduce batch size
+
+    /* eslint-disable no-console */
+    console.log(
+      `${accountId} rule ${i * batchSize + 1}-${(i + 1) * batchSize} / ${
+        e2mRulesForAccount.length
+      }`
+    );
+    /* eslint-enable */
   }
   return cardinalitiesForAccount;
 }
