@@ -220,42 +220,26 @@ async function processBatchOfCardinalities(
   errorCount,
   maxVisibileErrors,
   cardinalitiesForAccount,
-  batchSize,
   onCardinalityAdded,
   onError
 ) {
+  let failedBatch = false;
   try {
     const { data, errors } = await calculateCardinalityForRuleBatch(
       batchOfRules,
       accountId
     );
     if (errors) {
+      const errorStr = JSON.stringify(errors);
+      const isDbLimitError = errorStr.includes('limit exceeded');
       /* eslint-disable no-console */
-      console.log(
-        'error loading cardinality with batch',
-        JSON.stringify(errors)
-      );
+      console.log('Error loading cardinality with batch: ', errorStr);
       /* eslint-enable */
       errorCount = errorCount + 1;
-      if (batchSize === 1 && errorCount < maxVisibileErrors) {
+      if (!isDbLimitError && errorCount < maxVisibileErrors) {
         onError(JSON.stringify(errors));
       }
-      // If there was an error process each rule 1 by 1
-      //    and reduce the batchSize to 1 for future calculations
-      for (let i = 0; i < batchOfRules.length; i++) {
-        cardinalitiesForAccount = processBatchOfCardinalities(
-          [batchOfRules[i]],
-          accountId,
-          errorCount,
-          maxVisibileErrors,
-          cardinalitiesForAccount,
-          batchSize,
-          onCardinalityAdded,
-          onError
-        );
-      }
-
-      batchSize = 1;
+      failedBatch = true;
     } else if (data) {
       cardinalitiesForAccount = parseAndAddNewCardinality(
         data,
@@ -270,7 +254,11 @@ async function processBatchOfCardinalities(
       onError(error);
     }
   }
-  return { cardinalitiesForAccount, batchSize };
+  return {
+    cardinalitiesForAccount,
+    processIndividually: failedBatch,
+    errorCount
+  };
 }
 
 async function calculateCardinalityForEnabledRulesForAccount(
@@ -284,30 +272,52 @@ async function calculateCardinalityForEnabledRulesForAccount(
     accountId,
     cardinalities: []
   };
-  let batchSize = 5;
+  let processIndividually = false;
+  let errorCount = 0;
+  const batchSize = 5;
   const maxVisibileErrors = 1; // After displaying one error, we will silently log the remainder
   const ruleBatchArray = chunk(e2mRulesForAccount, batchSize);
-  const errorCount = 0;
-  for (let i = 0; i < ruleBatchArray.length; i++) {
-    const response = await processBatchOfCardinalities(
-      ruleBatchArray[i],
-      accountId,
-      errorCount,
-      maxVisibileErrors,
-      cardinalitiesForAccount,
-      batchSize,
-      onCardinalityAdded,
-      onError
-    );
 
-    cardinalitiesForAccount = response.cardinalitiesForAccount;
-    batchSize = response.batchSize; // processBatchOfCardinalities() can reduce batch size
+  for (let i = 0; i < ruleBatchArray.length; i++) {
+    if (!processIndividually) {
+      const response = await processBatchOfCardinalities(
+        ruleBatchArray[i],
+        accountId,
+        errorCount,
+        maxVisibileErrors,
+        cardinalitiesForAccount,
+        onCardinalityAdded,
+        onError
+      );
+      cardinalitiesForAccount = response.cardinalitiesForAccount;
+      processIndividually = response.processIndividually;
+      errorCount = response.errorCount;
+    }
+    // In the event that a batch fails (likely because of db limits)
+    //    try  processing the cardinalities individually.
+    if (processIndividually) {
+      for (let j = 0; j < ruleBatchArray[i].length; j++) {
+        const singleItemBatch = [ruleBatchArray[i][j]];
+        const response = await processBatchOfCardinalities(
+          singleItemBatch,
+          accountId,
+          errorCount,
+          maxVisibileErrors,
+          cardinalitiesForAccount,
+          onCardinalityAdded,
+          onError
+        );
+        cardinalitiesForAccount = response.cardinalitiesForAccount;
+        errorCount = response.errorCount;
+      }
+    }
 
     /* eslint-disable no-console */
     console.log(
-      `${accountId} rule ${i * batchSize + 1}-${(i + 1) * batchSize} / ${
+      `${accountId} rules ${i * batchSize + 1}-${(i + 1) * batchSize} / ${
         e2mRulesForAccount.length
-      }`
+      }`,
+      `processedx ${processIndividually ? 'individually' : 'batch at a time'}`
     );
     /* eslint-enable */
   }
