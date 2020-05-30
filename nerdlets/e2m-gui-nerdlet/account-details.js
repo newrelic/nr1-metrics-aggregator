@@ -14,10 +14,7 @@ export default class AccountDetails extends React.Component {
   getProgressDiv() {
     return (
       <div className="ProgressWrapper">
-        Calculating cardinality for all rules.{' '}
-        {this.props.numberOfRules > 10
-          ? 'This will be cached for 1 week on completion.'
-          : ''}
+        Calculating cardinality for all rules.
         <div className="ProgressVisual">
           {!this.props.percentCompleteCardLoading ? (
             <Spinner />
@@ -90,7 +87,7 @@ export default class AccountDetails extends React.Component {
           </div>
         )}
         <div className="refreshcache">
-          You are seeing cached data. To refresh click{' '}
+          You may be seeing cached data. To refresh click{' '}
           <span onClick={() => this.props.refreshCardinality()}>here</span>.
         </div>
       </div>
