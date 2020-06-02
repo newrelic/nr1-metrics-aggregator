@@ -101,6 +101,5 @@ AccountDetails.propTypes = {
   timerangeArray: PropTypes.array,
   percentCompleteCardLoading: PropTypes.number,
   cardinalityDataLoading: PropTypes.bool,
-  numberOfRules: PropTypes.number.isRequired,
   refreshCardinality: PropTypes.func.isRequired
 };

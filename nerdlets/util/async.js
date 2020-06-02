@@ -317,7 +317,9 @@ async function calculateCardinalityForEnabledRulesForAccount(
       `${accountId} rules ${i * batchSize + 1}-${(i + 1) * batchSize} / ${
         e2mRulesForAccount.length
       }`,
-      `processed ${processIndividually ? 'individually' : `${batchSize} at a time`}`
+      `processed ${
+        processIndividually ? 'individually' : `${batchSize} at a time`
+      }`
     );
     /* eslint-enable */
   }

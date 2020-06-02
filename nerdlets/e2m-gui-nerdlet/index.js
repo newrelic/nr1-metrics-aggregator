@@ -128,7 +128,7 @@ export default class E2mGui extends React.Component {
 
   async loadCardinality(e2mRules, accountsObj, noCache = false) {
     if (!this.state.cardinalityDataLoading) {
-      this.setState({ cardinalityDataLoading: true });
+      this.setState({ cardinalityDataLoading: true, timerangeArray: null });
     }
     try {
       const bustCache = noCache || e2mRules.length < 10;
