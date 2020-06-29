@@ -51,13 +51,12 @@ const Section1 = ({
             spacingType={[HeadingText.SPACING_TYPE.MEDIUM]}
             type={HeadingText.TYPE.HEADING_2}
           >
-            Select account data to aggregate
+          Define your rule
           </HeadingText>
         </div>
         <div className={`body ${activeStep === 1 ? 'expand' : 'collapse'}`}>
-          <div className="section-heading">Account</div>
+          <div className="section-heading">Select an account</div>
           <div className="section-description">
-            Select the account(s) you'd like to create rules for.
           </div>
           <AccountSelector
             accountsObj={accountsObj}
@@ -76,9 +75,8 @@ const Section1 = ({
             </>
           ) : (
             <>
-              <div className="section-heading">Events</div>
+              <div className="section-heading">Select an event</div>
               <div className="section-description">
-                Select which event type you'd like to aggegate (eg. 'PageView')
               </div>
               <EventSelector
                 selectedAccountID={selectedAccountID}
@@ -86,20 +84,16 @@ const Section1 = ({
                 selectedEventType={selectedEventType}
               />
 
-              <div className="section-heading">Aggregation function</div>
+              <div className="section-heading">Select your query function</div>
               <div className="section-description">
-                This tells us what calculation to use when we aggregate the
-                data. Do you want to produce a uniqueCount, average, etc.
               </div>
               <AggregatorSelector
                 setAggregator={setAggregator}
                 selectedAggregator={selectedAggregator}
                 selectedEventType={selectedEventType}
               />
-              <div className="section-heading">Attribute to aggregate</div>
+              <div className="section-heading">Select the attribute for your metric</div>
               <div className="section-description">
-                This is the attribute that you want to aggregate, it must have a
-                numerical value (eg. 'Duration')
               </div>
               <AttributeDropdownSelector
                 selectedAttribute={selectedAttribute}
@@ -115,9 +109,6 @@ const Section1 = ({
               </div>
 
               <div className="section-description">
-                You can narrow the scope of this metric to only include data
-                that matches on certain key values. (eg. appName is "myApp").
-                Click the filter icon down to include more complex filters.
               </div>
 
               <FilterSelector
@@ -131,13 +122,11 @@ const Section1 = ({
               <div
                 className={`section-heading ${violation ? 'violation' : ''}`}
               >
-                Select additional attributes to keep on the metric{' '}
+                Select additional attributes to facet on the metric{' '}
                 <span className="attributeMax">Max 20 attributes</span>
               </div>
 
               <div className="section-description">
-                You can select additional addtributes to keep on the metric for
-                further analysis.
               </div>
               <AttributeCheckboxSelector
                 selectedAttribute={selectedAttribute}

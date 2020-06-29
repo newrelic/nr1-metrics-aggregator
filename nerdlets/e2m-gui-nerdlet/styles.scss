@@ -94,7 +94,7 @@
 .section-heading {
 	margin-top: 30px;
 	font-weight: 600;
-	font-size: 15px;
+	font-size: 11px;
 	padding-bottom: 5px;
 	&.violation {
 		color: #e6194b;
@@ -119,7 +119,7 @@
 .section-description {
 	font-style: italic;
 	font-size: 16px;
-	padding-bottom: 10px;
+	padding-bottom: -10px;
 }
 
 Dropdown,
