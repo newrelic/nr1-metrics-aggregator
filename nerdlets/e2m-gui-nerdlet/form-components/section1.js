@@ -51,13 +51,12 @@ const Section1 = ({
             spacingType={[HeadingText.SPACING_TYPE.MEDIUM]}
             type={HeadingText.TYPE.HEADING_2}
           >
-          Define your rule
+            Define your rule
           </HeadingText>
         </div>
         <div className={`body ${activeStep === 1 ? 'expand' : 'collapse'}`}>
           <div className="section-heading">Select an account</div>
-          <div className="section-description">
-          </div>
+          <div className="section-description" />
           <AccountSelector
             accountsObj={accountsObj}
             setAccountID={setAccountID}
@@ -75,9 +74,10 @@ const Section1 = ({
             </>
           ) : (
             <>
-              <div className="section-heading">Select an event to base your metric off of</div>
-              <div className="section-description">
+              <div className="section-heading">
+                Select an event to base your metric off of
               </div>
+              <div className="section-description" />
               <EventSelector
                 selectedAccountID={selectedAccountID}
                 setEventType={setEventType}
@@ -85,16 +85,16 @@ const Section1 = ({
               />
 
               <div className="section-heading">Select your query function</div>
-              <div className="section-description">
-              </div>
+              <div className="section-description" />
               <AggregatorSelector
                 setAggregator={setAggregator}
                 selectedAggregator={selectedAggregator}
                 selectedEventType={selectedEventType}
               />
-              <div className="section-heading">Select the attribute for your metric</div>
-              <div className="section-description">
+              <div className="section-heading">
+                Select the attribute for your metric
               </div>
+              <div className="section-description" />
               <AttributeDropdownSelector
                 selectedAttribute={selectedAttribute}
                 selectedAggregator={selectedAggregator}
@@ -108,8 +108,7 @@ const Section1 = ({
                 Narrow the scope <span className="unbold">(optional)</span>
               </div>
 
-              <div className="section-description">
-              </div>
+              <div className="section-description" />
 
               <FilterSelector
                 selectedAccountID={selectedAccountID}
@@ -126,8 +125,7 @@ const Section1 = ({
                 <span className="attributeMax">Max 20 attributes</span>
               </div>
 
-              <div className="section-description">
-              </div>
+              <div className="section-description" />
               <AttributeCheckboxSelector
                 selectedAttribute={selectedAttribute}
                 selectedAggregator={selectedAggregator}

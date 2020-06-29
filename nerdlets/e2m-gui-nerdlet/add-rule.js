@@ -301,7 +301,6 @@ export default class AddE2MRule extends React.Component {
   }
 
   closeAddRule() {
-
     this.props.reloadE2MRules();
     this.setState(DEFAULT_STATE);
     this.nameTextfield.current.clear();
