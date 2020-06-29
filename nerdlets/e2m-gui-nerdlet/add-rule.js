@@ -301,6 +301,8 @@ export default class AddE2MRule extends React.Component {
   }
 
   closeAddRule() {
+
+    this.props.reloadE2MRules();
     this.setState(DEFAULT_STATE);
     this.nameTextfield.current.clear();
     this.aliasTextfield.current.clear();
@@ -453,5 +455,6 @@ AddE2MRule.propTypes = {
   e2mRulesByMetricName: PropTypes.array,
   cardinalityTotals: PropTypes.object,
   timerangeArray: PropTypes.array,
-  cardinalityDataLoading: PropTypes.bool.isRequired
+  cardinalityDataLoading: PropTypes.bool.isRequired,
+  reloadE2MRules: PropTypes.func.isRequired
 };

@@ -75,7 +75,7 @@ const Section1 = ({
             </>
           ) : (
             <>
-              <div className="section-heading">Select an event</div>
+              <div className="section-heading">Select an event to base your metric off of</div>
               <div className="section-description">
               </div>
               <EventSelector

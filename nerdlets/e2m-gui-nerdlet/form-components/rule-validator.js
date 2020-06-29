@@ -152,8 +152,7 @@ RuleValidator.propTypes = {
   cardinalityRuleViolation: PropTypes.bool,
   cardinalityAccountViolation: PropTypes.bool,
   setValidationTimeout: PropTypes.func.isRequired,
-  cardinalityDataLoading: PropTypes.bool.isRequired,
-  cardinalityTimeseries: PropTypes.object
+  cardinalityDataLoading: PropTypes.bool.isRequired
 };
 
 export default RuleValidator;

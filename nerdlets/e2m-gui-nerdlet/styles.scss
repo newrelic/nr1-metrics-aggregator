@@ -119,7 +119,6 @@
 .section-description {
 	font-style: italic;
 	font-size: 16px;
-	padding-bottom: -10px;
 }
 
 Dropdown,
@@ -213,7 +212,7 @@ DropdownItem {
 	top: 60px;
 	width: 60%;
 	overflow-y: scroll;
-	height: 750px;
+	height: 500px;
 }
 
 .RequirementsPane {

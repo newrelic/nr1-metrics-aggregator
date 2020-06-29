@@ -10,7 +10,7 @@ class AttributeDropdownSelector extends React.Component {
     this.state = {
       attributes: [],
       fetching: false,
-      error: null
+      error: null,
     };
     this.fetchData = this.fetchData.bind(this);
   }
@@ -49,7 +49,7 @@ class AttributeDropdownSelector extends React.Component {
               );
             } catch (error) {
               this.setState({
-                error: `${error}\n${JSON.stringify(data)}`
+                error: `${error}\n${JSON.stringify(data)}`,
               });
             }
           });
@@ -58,7 +58,7 @@ class AttributeDropdownSelector extends React.Component {
         this.setState({
           attributes,
           fetching: false,
-          error: null
+          error: null,
         });
       })
       .catch(error => this.setState({ error, fetching: false }));
@@ -86,7 +86,8 @@ class AttributeDropdownSelector extends React.Component {
     const attributeFilter = attr =>
       this.props.selectedAggregator &&
       (this.props.selectedAggregator.toLowerCase() === 'uniquecount' ||
-        (this.props.selectedAggregator.toLowerCase() === 'summary' &&
+        ((this.props.selectedAggregator.toLowerCase() === 'summary' ||
+          this.props.selectedAggregator.toLowerCase() === 'distribution') &&
           attr.type === 'numeric'));
 
     const { selectedAttribute, setAttribute } = this.props;
@@ -96,7 +97,7 @@ class AttributeDropdownSelector extends React.Component {
       <SelectSearch
         options={attributes.filter(attributeFilter).map(attribute => ({
           name: attribute.key,
-          value: attribute.key
+          value: attribute.key,
         }))}
         placeholder={
           selectedAttribute || 'Choose an attribute to base the metric off of'
@@ -118,7 +119,7 @@ AttributeDropdownSelector.propTypes = {
   selectedEventType: PropTypes.string,
   setAttribute: PropTypes.func.isRequired,
   selectedAttribute: PropTypes.string,
-  selectedAggregator: PropTypes.string
+  selectedAggregator: PropTypes.string,
 };
 
 export default AttributeDropdownSelector;
