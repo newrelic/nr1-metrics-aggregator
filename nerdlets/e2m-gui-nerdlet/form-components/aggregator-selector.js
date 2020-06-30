@@ -10,13 +10,19 @@ const AggregatorSelector = ({ setAggregator, selectedEventType }) => {
     <RadioGroup {...disabledOrNotObj}>
       <Radio
         {...disabledOrNotObj}
-        label="Summary"
+        label="Summary--use if the query's function is min, max, sum, count, or average"
         value="summary"
         onChange={() => setAggregator('summary')}
       />
       <Radio
         {...disabledOrNotObj}
-        label="Unique Count"
+        label="Distribution--use if the query's function is percentile or histogram"
+        value="distribution"
+        onChange={() => setAggregator('distribution')}
+      />
+      <Radio
+        {...disabledOrNotObj}
+        label="Unique Count--use if the query's function is unique count"
         value="uniqueCount"
         onChange={() => setAggregator('uniqueCount')}
       />

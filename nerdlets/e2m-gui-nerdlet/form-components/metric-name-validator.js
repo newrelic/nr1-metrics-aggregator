@@ -41,13 +41,15 @@ class MetricNameValidator extends React.Component {
   }
 
   getMetricNamesArrayFromE2MRulesList() {
-    if (!this.props.e2mRulesByMetricName || !this.props.selectedAccountID)
+    if (!this.props.e2mRulesByMetricName || !this.props.selectedAccountID) {
       return [];
+    }
 
     return this.props.e2mRulesByMetricName
       .filter(
         rule =>
-          rule.accountId && rule.accountId === this.props.selectedAccountID
+          rule.accountId &&
+          `${rule.accountId}` === `${this.props.selectedAccountID}`
       )
       .map(ruleObj => ruleObj.metricName);
   }

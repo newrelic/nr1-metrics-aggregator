@@ -73,7 +73,7 @@ class RuleValidator extends React.Component {
           {this.props.cardinalityRuleViolation ? (
             <li className="CardinalityViolation">
               <b>
-                Your rule has more than 20,000 unique values (per-rule
+                Your rule has more than 50,000 unique values (per-rule
                 cardinality violation)!
               </b>
               <br />
@@ -83,7 +83,7 @@ class RuleValidator extends React.Component {
             </li>
           ) : (
             <li className="NoCardinalityViolation">
-              Your rule is within the per-rule cardinality limit of 20,000 over
+              Your rule is within the per-rule cardinality limit of 50,000 over
               the last week.
             </li>
           )}
@@ -153,7 +153,10 @@ RuleValidator.propTypes = {
   cardinalityAccountViolation: PropTypes.bool,
   setValidationTimeout: PropTypes.func.isRequired,
   cardinalityDataLoading: PropTypes.bool.isRequired,
-  cardinalityTimeseries: PropTypes.object
+  cardinalityTimeseries: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 };
 
 export default RuleValidator;

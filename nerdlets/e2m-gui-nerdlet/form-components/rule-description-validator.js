@@ -21,7 +21,7 @@ class RuleDescriptionValidator extends React.Component {
     /* eslint-disable no-useless-escape */
     const ruleDescription = userInputtedRuleDescription.replace(
       /[^a-zA-Z0-9\.]/g,
-      ''
+      ' '
     );
     /* eslint-enable */
 

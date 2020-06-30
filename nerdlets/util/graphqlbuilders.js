@@ -106,11 +106,12 @@ export function buildCardinalityTimeseriesQueryForBatch(batchQueryInfo) {
     actor {
       ${batchQueryInfo.map((queryInfo, index) => {
         const { accountId, eventType, facets, wheres } = queryInfo;
+        const wheresHttpEscaped = wheres.replace(/"/g, '\\"');
         const selection = !facets
           ? '1'
           : `uniqueCount(${facets.map(facet => `\`${facet}\``).join(', ')})`;
         return `query${index}: account(id: ${accountId}) {
-                  nrql(query: "FROM ${eventType} SELECT ${selection} AS 'cardinality' ${wheres} SINCE 3 days ago TIMESERIES 1 day", timeout: 250) {
+                  nrql(query: "FROM ${eventType} SELECT ${selection} AS 'cardinality' ${wheresHttpEscaped} SINCE 3 days ago TIMESERIES 1 day", timeout: 250) {
                                 results
                               }
                             }`;
@@ -196,10 +197,11 @@ export function buildRateReductionQueryForMetric(
   wheres,
   metricName
 ) {
+  const wheresHttpEscaped = wheres.replace(/"/g, '\\"');
   const query = `{
     actor {
       EventRate: account(id: ${accountId}) {
-        nrql(query: "FROM ${eventType} SELECT rate(count(*), 1 day) as 'eventrate' ${wheres} since 1 day ago", timeout: 250) {
+        nrql(query: "FROM ${eventType} SELECT rate(count(*), 1 day) as 'eventrate' ${wheresHttpEscaped} since 1 day ago", timeout: 250) {
           results
         }
       }

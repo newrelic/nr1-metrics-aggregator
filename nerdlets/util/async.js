@@ -70,7 +70,10 @@ export async function createAndSaveNewRule(
     ruleDescription
   );
   if (error || data.eventsToMetricsCreateRule.failures.length) {
-    return { result: null, error };
+    const errorMsg = data.eventsToMetricsCreateRule.failures.length
+      ? JSON.stringify(data.eventsToMetricsCreateRule.failures)
+      : `${error}`;
+    return { result: null, error: errorMsg };
   }
   const newRule = data.eventsToMetricsCreateRule.successes[0];
   return storeRuleCardinalityIfOtherCardinalityStored(accountId, newRule);

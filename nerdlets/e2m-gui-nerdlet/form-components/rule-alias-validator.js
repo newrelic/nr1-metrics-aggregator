@@ -43,7 +43,8 @@ class RuleAliasValidator extends React.Component {
     return this.props.e2mRulesByMetricName
       .filter(
         rule =>
-          rule.accountId && rule.accountId === this.props.selectedAccountID
+          rule.accountId &&
+          `${rule.accountId}` === `${this.props.selectedAccountID}`
       )
       .map(rule => rule.name);
   }

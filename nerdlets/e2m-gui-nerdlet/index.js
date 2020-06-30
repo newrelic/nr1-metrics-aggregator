@@ -281,6 +281,7 @@ export default class E2mGui extends React.Component {
                 cardinalityDataLoading={cardinalityDataLoading}
                 timerangeArray={this.getTimeRange()}
                 addNewRuleAndCloseDialog={this.addNewRuleAndCloseDialog}
+                reloadE2MRules={this.reloadE2MRules}
               />
             )}
           </div>
