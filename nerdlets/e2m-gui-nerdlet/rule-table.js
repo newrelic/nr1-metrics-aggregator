@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { getCardinalityForRule } from '../util/cardinality-helper';
 import { toggleMetric } from '../util/async';
+import { filterMetricsBySearchString } from '../util/misc';
 
 import EnableSwitch from './table-components/enable-switch';
 import CardinalityPercent from './table-components/cardinality-percent';
@@ -16,15 +17,14 @@ export default class TableWrapper extends React.Component {
       cardinalities,
       metricSelection,
       reloadE2MRules,
-      filterText
+      filterText,
+      accountsObj
     } = this.props;
-    const filteredMetrics = !filterText
-      ? e2mRulesByMetricName
-      : e2mRulesByMetricName.filter(m =>
-          `${m.accountId}${m.metricName}${m.id}`
-            .toLowerCase()
-            .includes(filterText.toLowerCase())
-        );
+    const filteredMetrics = filterMetricsBySearchString(
+      filterText,
+      e2mRulesByMetricName,
+      accountsObj
+    );
 
     // TODO - allow sorting by clicking column names
     const enabled = filteredMetrics.filter(m => m.enabled);

@@ -207,3 +207,22 @@ export function commarize(number) {
   // return formatted original number
   return Math.floor(number);
 }
+
+export function filterMetricsBySearchString(
+  filterText,
+  metricList,
+  accountsObj
+) {
+  try {
+    return !filterText
+      ? metricList
+      : metricList.filter(m => {
+          const searchStr = `${JSON.stringify(m)}${
+            accountsObj[m.accountId].name
+          }`.toLowerCase();
+          return searchStr.includes(filterText.toLowerCase());
+        });
+  } catch (error) {
+    console.log('Uncaught search error', error, filterText); // eslint-disable-line no-console
+  }
+}
