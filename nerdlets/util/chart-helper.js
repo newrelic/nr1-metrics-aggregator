@@ -16,7 +16,7 @@ function getColorForAccountTotal(chartdata) {
 function getColorForRule(chartdata) {
   let violation = false;
   for (let i = 0; i < chartdata.length; i++) {
-    if (chartdata[i].y > 50000) {
+    if (chartdata[i].y > 100000) {
       violation = true;
       break;
     }
@@ -54,11 +54,11 @@ export function buildCardinalityChartData(
       data: nrqlStoreDataFormat
         ? timerangeArray.map(x => ({
             x,
-            y: 50000 /* This is the per rule max */
+            y: 100000 /* This is the per rule max */
           }))
         : cardinalities[0].map(cardinality => ({
             x: cardinality.beginTimeSeconds,
-            y: 50000
+            y: 100000
           }))
     }
   ];

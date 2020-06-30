@@ -8,7 +8,7 @@ import { filterMetricsBySearchString } from '../util/misc';
 import EnableSwitch from './table-components/enable-switch';
 import CardinalityPercent from './table-components/cardinality-percent';
 
-const CARDINALITY_LIMIT = 50000;
+const CARDINALITY_LIMIT = 100000;
 
 export default class TableWrapper extends React.Component {
   render() {
