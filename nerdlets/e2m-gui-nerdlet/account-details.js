@@ -7,6 +7,11 @@ import {
   buildCardinalityTotalsChartData
 } from '../util/chart-helper';
 
+import {
+  filterCardinalitiesByFitleredMetricList,
+  filterCardinalityTotalsByAccountIdFilter
+} from '../util/misc';
+
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -58,16 +63,30 @@ export default class AccountDetails extends React.Component {
 
     const {
       timerangeArray,
+      filteredMetrics,
+      accountIdFilter,
       cardinalities,
       cardinalityTotals,
       cardinalityDataLoading
     } = this.props;
 
-    const dataByRule = buildCardinalityChartData(timerangeArray, cardinalities);
+    const filteredCardinalities = filterCardinalitiesByFitleredMetricList(
+      JSON.parse(JSON.stringify(cardinalities)),
+      filteredMetrics
+    );
+    const filteredCardinalityTotals = filterCardinalityTotalsByAccountIdFilter(
+      JSON.parse(JSON.stringify(cardinalityTotals)),
+      accountIdFilter
+    );
+
+    const dataByRule = buildCardinalityChartData(
+      timerangeArray,
+      filteredCardinalities
+    );
 
     const dataByAccount = buildCardinalityTotalsChartData(
       timerangeArray,
-      cardinalityTotals
+      filteredCardinalityTotals
     );
 
     return (
@@ -96,6 +115,8 @@ export default class AccountDetails extends React.Component {
 }
 
 AccountDetails.propTypes = {
+  filteredMetrics: PropTypes.array,
+  accountIdFilter: PropTypes.string,
   cardinalities: PropTypes.array,
   cardinalityTotals: PropTypes.object,
   timerangeArray: PropTypes.array,

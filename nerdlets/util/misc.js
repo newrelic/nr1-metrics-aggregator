@@ -226,3 +226,88 @@ export function filterMetricsBySearchString(
     console.log('Uncaught search error', error, filterText); // eslint-disable-line no-console
   }
 }
+
+export function filterMetricsByAccount(accountIdFilter, metricList) {
+  try {
+    return !accountIdFilter
+      ? metricList
+      : metricList.filter(m => `${m.accountId}` === `${accountIdFilter}`);
+  } catch (error) {
+    console.log('Uncaught account filter error', error, accountIdFilter); // eslint-disable-line no-console
+  }
+}
+
+export function filterMetricsBySearchStringAndAccount(
+  filterText,
+  accountIdFilter,
+  metricList,
+  accountsObj
+) {
+  let filteredList = filterMetricsByAccount(accountIdFilter, metricList);
+  filteredList = filterMetricsBySearchString(
+    filterText,
+    filteredList,
+    accountsObj
+  );
+  return filteredList;
+}
+
+export function filterCardinalitiesByFitleredMetricList(
+  cardinalities,
+  filteredMetrics
+) {
+  if (!cardinalities || !cardinalities.length || !filteredMetrics) {
+    return cardinalities;
+  }
+  const ruleIdList = filteredMetrics.map(metric => metric.id);
+  const cardCopy = cardinalities.slice(); // Deep copy
+  return cardCopy.map(card => {
+    const cards =
+      !('cardinalities' in card) || !card.cardinalities.length
+        ? []
+        : card.cardinalities.filter(cardinality =>
+            ruleIdList.includes(cardinality.id)
+          );
+    card.cardinalities = cards;
+    return card;
+  });
+}
+
+export function filterCardinalityTotalsByAccountIdFilter(
+  cardinalityTotals,
+  accountIdFilter
+) {
+  if (!cardinalityTotals || !accountIdFilter) {
+    return cardinalityTotals;
+  }
+  const filteredTotal = {};
+  filteredTotal[accountIdFilter] = cardinalityTotals[accountIdFilter];
+  return filteredTotal;
+}
+
+export function getAccountIdFromAccountName(accountName, accountsObj) {
+  if (!accountName || !accountsObj) {
+    return null;
+  }
+  try {
+    const accounts = Object.values(accountsObj);
+    for (let i = 0; i < accounts.length; i++) {
+      if (accounts[i].name === accountName) {
+        return accounts[i].id;
+      }
+    }
+  } catch (error) {
+    console.log('Error getting account id from name', accountName, accountsObj); // eslint-disable-line no-console
+  }
+}
+
+export function getAccountNameFromID(accountId, accountsObj) {
+  if (!accountId || !accountsObj) {
+    return null;
+  }
+  try {
+    return accountsObj[accountId].name;
+  } catch (error) {
+    console.log('Error getting account name from id', accountId, accountsObj); // eslint-disable-line no-console
+  }
+}
