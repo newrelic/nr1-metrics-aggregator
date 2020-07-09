@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Button,
+  Dropdown,
+  DropdownItem,
   Grid,
   GridItem,
   HeadingText,
@@ -16,6 +18,14 @@ import MetricDetails from './metric-details';
 import icon from '../../launchers/e2m-gui-launcher/icon.png';
 
 import { getCardinalityTotalsForAccount } from '../util/cardinality-helper';
+import {
+  filterMetricsBySearchStringAndAccount,
+  getAccountIdFromAccountName,
+  getAccountNameFromID,
+  getE2MRulesByMetric,
+  makeAccountArrayAnObject,
+  getLastThreeDays
+} from '../util/misc';
 
 import {
   loadCardinalityForAllEnabledRules,
@@ -25,12 +35,6 @@ import {
 
 import { getTimeRangeFromCardinality } from '../util/chart-helper';
 
-import {
-  getE2MRulesByMetric,
-  makeAccountArrayAnObject,
-  getLastThreeDays
-} from '../util/misc';
-
 const DEFAULT_STATE = {
   accountsObj: null,
   cardinalities: null,
@@ -39,6 +43,7 @@ const DEFAULT_STATE = {
   e2mRules: null,
   e2mRulesByMetricName: null,
   filterText: null,
+  accountIdFilter: null,
   hidden: true,
   metricSelection: null,
   rateReductions: {},
@@ -62,6 +67,7 @@ export default class E2mGui extends React.Component {
     this.loadCardinality = this.loadCardinality.bind(this);
     this.getTimeRange = this.getTimeRange.bind(this);
     this.reloadE2MRules = this.reloadE2MRules.bind(this);
+    this.setaccountIdFilter = this.setaccountIdFilter.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +130,18 @@ export default class E2mGui extends React.Component {
       timerangeArray,
       percentCompleteCardLoading: (ruleCount * 100) / e2mRules.length
     });
+  }
+
+  setaccountIdFilter(accountIdFilter) {
+    try {
+      const accountsObj = this.state.accountsObj;
+      const accountName =
+        accountIdFilter === 'All Accounts' ? null : accountIdFilter;
+      const accountId = getAccountIdFromAccountName(accountName, accountsObj);
+      this.setState({ accountIdFilter: accountId });
+    } catch (error) {
+      console.log('Uncaught account filter set error', error); // eslint-disable-line no-console
+    }
   }
 
   async loadCardinality(e2mRules, accountsObj, noCache = false) {
@@ -252,8 +270,16 @@ export default class E2mGui extends React.Component {
       cardinalities,
       percentCompleteCardLoading,
       cardinalityDataLoading,
-      rateReductions
+      rateReductions,
+      accountIdFilter
     } = this.state;
+
+    const filteredMetrics = filterMetricsBySearchStringAndAccount(
+      filterText,
+      accountIdFilter,
+      e2mRulesByMetricName,
+      accountsObj
+    );
 
     const numEnabledRules = !e2mRulesByMetricName
       ? 0
@@ -328,12 +354,50 @@ export default class E2mGui extends React.Component {
                 </div>
                 <div className={!hidden ? 'hidden' : ''}>
                   {/* When the rules finish loading, show the table if there are
-												already e2m rules. Otherwise, show a warning that they either
-												don't have e2m rules or do not have permissions. */}
+                        already e2m rules. Otherwise, show a warning that they either
+                        don't have e2m rules or do not have permissions. */}
                   {!tableDataLoading ? (
                     e2mRulesByMetricName && e2mRulesByMetricName.length ? (
                       <div className="table-container">
                         <div className="FilterBox">
+                          <Dropdown
+                            className="AccountsDropdown"
+                            title={
+                              getAccountNameFromID(
+                                accountIdFilter,
+                                accountsObj
+                              ) || 'All Accounts'
+                            }
+                          >
+                            <>
+                              {accountIdFilter ? (
+                                <DropdownItem
+                                  key="NoFilter"
+                                  onClick={() => this.setaccountIdFilter(null)}
+                                >
+                                  <b>All Accounts</b>
+                                </DropdownItem>
+                              ) : (
+                                ''
+                              )}
+                              {accountsObj
+                                ? Object.values(accountsObj).map(
+                                    (accountDict, index) => (
+                                      <DropdownItem
+                                        key={index}
+                                        onClick={() =>
+                                          this.setaccountIdFilter(
+                                            accountDict.name
+                                          )
+                                        }
+                                      >
+                                        {accountDict.name}
+                                      </DropdownItem>
+                                    )
+                                  )
+                                : null}
+                            </>
+                          </Dropdown>
                           <TextField
                             className="FilterTextfield"
                             onChange={e =>
@@ -344,8 +408,7 @@ export default class E2mGui extends React.Component {
                           />
                         </div>
                         <RuleTable
-                          filterText={filterText}
-                          e2mRulesByMetricName={e2mRulesByMetricName}
+                          filteredMetrics={filteredMetrics}
                           cardinalities={cardinalities}
                           setMetricSelection={this.setMetricSelection}
                           metricSelection={metricSelection}
@@ -401,10 +464,12 @@ export default class E2mGui extends React.Component {
               ) : (
                 <div className="DetailPanel">
                   {/* Show the overall account details by default
-											and the indidvidual metric details after
-											clicks on a table row. */}
+                      and the indidvidual metric details after
+                      clicks on a table row. */}
                   {!metricSelection ? (
                     <AccountDetails
+                      accountsObj={accountsObj}
+                      filteredMetrics={filteredMetrics}
                       cardinalities={cardinalities}
                       cardinalityTotals={cardinalityTotals}
                       timerangeArray={this.getTimeRange()}
@@ -416,6 +481,7 @@ export default class E2mGui extends React.Component {
                       refreshCardinality={() =>
                         this.loadCardinality(e2mRules, accountsObj, true)
                       }
+                      accountIdFilter={accountIdFilter}
                     />
                   ) : (
                     <MetricDetails

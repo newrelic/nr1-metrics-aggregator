@@ -130,7 +130,8 @@ class RuleValidator extends React.Component {
                   data={buildCardinalityTotalsChartData(
                     this.props.timerangeArray,
                     cardinalityTotalsForAccount,
-                    this.props.cardinalityTimeseries
+                    this.props.cardinalityTimeseries,
+                    true
                   )}
                   fullWidth
                   fullHeight

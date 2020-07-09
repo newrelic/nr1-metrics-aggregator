@@ -120,7 +120,8 @@ export function buildCardinalityChartData(
 export function buildCardinalityTotalsChartData(
   timerangeArray,
   cardinalityTotalsForAllAccounts,
-  cardinalityRuleData = false
+  cardinalityRuleData = false,
+  hideId = false
 ) {
   if (
     !cardinalityTotalsForAllAccounts ||
@@ -166,7 +167,7 @@ export function buildCardinalityTotalsChartData(
 
       const metadata = {
         id: `Account ${accountId}`,
-        name: `Account ${accountId}`,
+        name: hideId ? 'Account' : `Account ${accountId}`,
         color: getColorForAccountTotal(data),
         viz: 'main',
         units_data: {
