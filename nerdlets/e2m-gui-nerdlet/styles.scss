@@ -60,6 +60,8 @@
 }
 
 .outerMarginModal {
+	height: 100%;
+	overflow: scroll;
 	margin-left: 50px;
 	margin-right: 50px;
 }
@@ -211,8 +213,7 @@ DropdownItem {
 	left: 75px;
 	top: 60px;
 	width: 60%;
-	overflow-y: scroll;
-	height: 500px;
+	height: 100%;
 }
 
 .RequirementsPane {
@@ -609,7 +610,7 @@ DropdownItem {
 		background-color: white;
 		width: calc(100% - 50px);
 		margin-left: 50px;
-		height: 100%;
+		height: calc(100% - 20px);
 		z-index: 999;
 		overflow: hidden;
 
