@@ -1,3 +1,10 @@
+## [0.9.10](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.9...v0.9.10) (2020-09-03)
+
+
+### Bug Fixes
+
+* Trigger release and changelog generation (via GH Actions) ([d27b8d4](https://github.com/newrelic/nr1-metrics-aggregator/commit/d27b8d41944b0e943222471037c1071f5d71c97d))
+
 ## [0.9.9](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.8...v0.9.9) (2020-08-06)
 
 
