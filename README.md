@@ -1,5 +1,5 @@
 
-[![New Relic One Catalog Project header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/New_Relic_One_Catalog_Project.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#nr1-catalog)
+[![New Relic One Catalog Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/New_Relic_One_Catalog_Project.png)](https://opensource.newrelic.com/oss-category/#new-relic-one-catalog-project)
 
 # Metric Aggregator
 
@@ -71,6 +71,12 @@ Please do not report issues with the Metric Aggregator to New Relic Global Techn
 ## Issues / Enhancement Requests
 
 Issues and enhancement requests can be submitted in the [Issues tab of this repository](https://github.com/newrelic/nr1-metrics-aggregator/issues). Please search for and review the existing open issues before submitting a new issue.
+
+## Security
+
+As noted in our [security policy](https://github.com/newrelic/nr1-metrics-aggregator/security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
+
+If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through [HackerOne](https://hackerone.com/newrelic).
 
 ## Contributing
 
