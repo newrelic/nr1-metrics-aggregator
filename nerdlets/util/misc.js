@@ -82,7 +82,8 @@ const RESERVED_WORDS = [
   ' TIMESERIES ',
   ' EXTRAPOLATE ',
   ' SELECT ',
-  ' FROM '
+  ' FROM ',
+  ' AS '
 ];
 
 function findReservedWordIndexInNRQL(nrql) {

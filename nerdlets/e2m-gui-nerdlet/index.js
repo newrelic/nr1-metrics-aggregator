@@ -136,7 +136,7 @@ export default class E2mGui extends React.Component {
     try {
       const accountsObj = this.state.accountsObj;
       const accountName =
-        accountIdFilter === 'All Accounts' ? null : accountIdFilter;
+        accountIdFilter === 'All Accounts' ? null : accountIdFilter.toString();
       const accountId = getAccountIdFromAccountName(accountName, accountsObj);
       this.setState({ accountIdFilter: accountId });
     } catch (error) {

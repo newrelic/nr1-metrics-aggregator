@@ -3,7 +3,7 @@ import {
   AccountStorageMutation,
   AccountStorageQuery,
   NerdGraphQuery,
-  NerdGraphMutation
+  NerdGraphMutation,
 } from 'nr1';
 
 import { parseCardinalityBatchResponse } from './cardinality-helper';
@@ -16,15 +16,14 @@ import {
   buildRateReductionQueryForMetric,
   buildCreateNewRuleQuery,
   buildRulesQuery,
-  buildToggleRuleQuery
+  buildToggleRuleQuery,
 } from './graphqlbuilders';
 
 export async function calculateVolumeReductionForMetric(metric) {
   const { eventType, wheres } = parseNRQL(metric.nrql);
   const { accountId, metricName } = metric;
-  let { data, errors } = await NerdGraphQuery.query(
-    buildRateReductionQueryForMetric(accountId, eventType, wheres, metricName)
-  );
+  const query = buildRateReductionQueryForMetric(accountId, eventType, wheres, metricName)
+  let { data, errors } = await NerdGraphQuery.query(query);
   let eventRate = null;
   let metricRate = null;
   if (!errors) {
@@ -34,7 +33,7 @@ export async function calculateVolumeReductionForMetric(metric) {
     } catch (err) {
       errors = err;
     }
-  }
+  } 
   return { eventRate, metricRate, errors };
 }
 
@@ -113,7 +112,7 @@ async function queryNerdStorageForCardinalityForAccount(accountId) {
   const result = await AccountStorageQuery.query({
     accountId: parseInt(accountId),
     collection: 'e2m',
-    documentId: 'e2m'
+    documentId: 'e2m',
   });
 
   return result;
@@ -132,7 +131,7 @@ async function saveCardinalityForAccountToNerdStorage(
     actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
     collection: 'e2m',
     documentId: 'e2m',
-    document: JSON.stringify(cardinalitiesForAccount)
+    document: JSON.stringify(cardinalitiesForAccount),
   });
 }
 
@@ -210,7 +209,7 @@ function parseAndAddNewCardinality(
     cardinalitiesForAccount.beginTimeSeconds = beginTimeSeconds;
     cardinalitiesForAccount.cardinalities.push({
       id: rule.id,
-      cardinality
+      cardinality,
     });
   }
   onCardinalityAdded(cardinalitiesForAccount);
@@ -260,7 +259,7 @@ async function processBatchOfCardinalities(
   return {
     cardinalitiesForAccount,
     processIndividually: failedBatch,
-    errorCount
+    errorCount,
   };
 }
 
@@ -273,7 +272,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
   let cardinalitiesForAccount = {
     beginTimeSeconds: [],
     accountId,
-    cardinalities: []
+    cardinalities: [],
   };
   let processIndividually = false;
   let errorCount = 0;
@@ -432,7 +431,7 @@ export async function findRuleViolations(
   return {
     cardinalityRuleViolation,
     cardinalityAccountViolation,
-    cardinalityTimeseries: [...results]
+    cardinalityTimeseries: [...results],
   };
 }
 
