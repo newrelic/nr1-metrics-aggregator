@@ -431,7 +431,7 @@ export async function findRuleViolations(
   return {
     cardinalityRuleViolation,
     cardinalityAccountViolation,
-    cardinalityTimeseries: [...results],
+    cardinalityTimeseries: [...results]
   };
 }
 
