@@ -3,7 +3,7 @@ import {
   AccountStorageMutation,
   AccountStorageQuery,
   NerdGraphQuery,
-  NerdGraphMutation,
+  NerdGraphMutation
 } from 'nr1';
 
 import { parseCardinalityBatchResponse } from './cardinality-helper';
