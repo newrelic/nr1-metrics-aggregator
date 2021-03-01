@@ -112,7 +112,7 @@ async function queryNerdStorageForCardinalityForAccount(accountId) {
   const result = await AccountStorageQuery.query({
     accountId: parseInt(accountId),
     collection: 'e2m',
-    documentId: 'e2m',
+    documentId: 'e2m'
   });
 
   return result;
