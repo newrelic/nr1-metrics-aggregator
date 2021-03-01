@@ -272,7 +272,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
   let cardinalitiesForAccount = {
     beginTimeSeconds: [],
     accountId,
-    cardinalities: [],
+    cardinalities: []
   };
   let processIndividually = false;
   let errorCount = 0;
