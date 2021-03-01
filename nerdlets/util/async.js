@@ -16,7 +16,7 @@ import {
   buildRateReductionQueryForMetric,
   buildCreateNewRuleQuery,
   buildRulesQuery,
-  buildToggleRuleQuery,
+  buildToggleRuleQuery
 } from './graphqlbuilders';
 
 export async function calculateVolumeReductionForMetric(metric) {
