@@ -138,8 +138,12 @@ const Section1 = ({
             </>
           )}
           {validatingCardinality ? <Spinner /> : null}
-          {!readyForStepTwo() ? 
-        <div><br/>Select at least one facet to continue.</div> : (
+          {!readyForStepTwo() ? (
+            <div>
+              <br />
+              Select at least one facet to continue.
+            </div>
+          ) : (
             <Button
               className="next"
               onClick={() => setActiveStep(2)}
