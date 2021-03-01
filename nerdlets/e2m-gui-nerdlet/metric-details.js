@@ -18,13 +18,11 @@ export default class MetricDetails extends React.Component {
     };
   }
 
-  /* eslint-disable react/no-deprecated */
   componentWillMount() {
     if (!this.props.rateReduction) {
       this.calculateRateReduction();
     }
   }
-  /* eslint-enable */
 
   /* eslint-disable no-unused-vars */
   shouldComponentUpdate(nextProps, nextState) {
