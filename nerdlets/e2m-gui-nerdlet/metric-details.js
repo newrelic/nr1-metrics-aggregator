@@ -18,7 +18,7 @@ export default class MetricDetails extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.rateReduction) {
       this.calculateRateReduction();
     }
