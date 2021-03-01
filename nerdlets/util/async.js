@@ -131,7 +131,7 @@ async function saveCardinalityForAccountToNerdStorage(
     actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
     collection: 'e2m',
     documentId: 'e2m',
-    document: JSON.stringify(cardinalitiesForAccount),
+    document: JSON.stringify(cardinalitiesForAccount)
   });
 }
 
