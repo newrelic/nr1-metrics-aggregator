@@ -259,7 +259,7 @@ async function processBatchOfCardinalities(
   return {
     cardinalitiesForAccount,
     processIndividually: failedBatch,
-    errorCount,
+    errorCount
   };
 }
 
