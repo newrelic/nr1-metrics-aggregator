@@ -209,7 +209,7 @@ function parseAndAddNewCardinality(
     cardinalitiesForAccount.beginTimeSeconds = beginTimeSeconds;
     cardinalitiesForAccount.cardinalities.push({
       id: rule.id,
-      cardinality,
+      cardinality
     });
   }
   onCardinalityAdded(cardinalitiesForAccount);
