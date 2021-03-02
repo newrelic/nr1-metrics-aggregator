@@ -22,9 +22,13 @@ import {
 export async function calculateVolumeReductionForMetric(metric) {
   const { eventType, wheres } = parseNRQL(metric.nrql);
   const { accountId, metricName } = metric;
-  let { data, errors } = await NerdGraphQuery.query(
-    buildRateReductionQueryForMetric(accountId, eventType, wheres, metricName)
+  const query = buildRateReductionQueryForMetric(
+    accountId,
+    eventType,
+    wheres,
+    metricName
   );
+  let { data, errors } = await NerdGraphQuery.query(query);
   let eventRate = null;
   let metricRate = null;
   if (!errors) {

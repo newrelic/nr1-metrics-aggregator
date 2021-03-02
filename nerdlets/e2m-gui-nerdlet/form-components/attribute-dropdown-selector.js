@@ -44,6 +44,13 @@ class AttributeDropdownSelector extends React.Component {
           .filter(i => i.includes('query'))
           .forEach(query => {
             try {
+              // summary(1) is used for throughput metrics. It must be added manually.
+              if (
+                this.props.selectedAggregator &&
+                this.props.selectedAggregator.toLowerCase() === 'summary'
+              ) {
+                attributeSet.add({ key: '1', type: 'numeric' });
+              }
               data.actor[query].nrql.results.forEach(attributeObj =>
                 attributeSet.add(attributeObj)
               );
