@@ -153,7 +153,7 @@ RuleValidator.propTypes = {
   cardinalityTotals: PropTypes.object,
   cardinalityRuleViolation: PropTypes.bool,
   cardinalityAccountViolation: PropTypes.bool,
-  validatedFilterNRQL: PropTypes.string,
+  validatedFilterNRQL: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   setValidationTimeout: PropTypes.func.isRequired,
   cardinalityDataLoading: PropTypes.bool.isRequired,
   cardinalityTimeseries: PropTypes.oneOfType([
