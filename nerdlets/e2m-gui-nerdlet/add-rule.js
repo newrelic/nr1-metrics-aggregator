@@ -283,6 +283,7 @@ export default class AddE2MRule extends React.Component {
         this.state.selectedAccountID,
         this.state.selectedEventType,
         this.state.selectedFacetAttributes,
+        this.state.validatedFilterNRQL,
         this.props.timerangeArray,
         this.props.cardinalityTotals
       );

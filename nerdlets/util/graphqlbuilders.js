@@ -83,8 +83,10 @@ export function buildFilterValidationQuery(
 export function buildCardinalityTimeseriesQuery(
   selectedAccountID,
   eventType,
-  selectedFacetAttributes
+  selectedFacetAttributes,
+  whereClause
 ) {
+  const wheresHttpEscaped = whereClause ? whereClause.replace(/"/g, '\\"') : '';
   const query = `{
     actor {
       query${selectedAccountID}: account(id: ${selectedAccountID}) {
@@ -92,7 +94,7 @@ export function buildCardinalityTimeseriesQuery(
     .map(facet => `\`${facet}\``)
     .join(
       ', '
-    )}) AS 'cardinality' SINCE 3 days ago TIMESERIES 1 day", timeout: 300) {
+    )}) AS 'cardinality' SINCE 3 days ago ${wheresHttpEscaped} TIMESERIES 1 day", timeout: 300) {
           results
         }
       }
