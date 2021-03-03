@@ -440,6 +440,7 @@ export default class AddE2MRule extends React.Component {
                 cardinalityAccountViolation={cardinalityAccountViolation}
                 setValidationTimeout={this.setValidationTimeout}
                 cardinalityDataLoading={this.props.cardinalityDataLoading}
+                validatedFilterNRQL={validatedFilterNRQL}
               />
             </div>
           )}
