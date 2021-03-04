@@ -406,18 +406,16 @@ export async function findRuleViolations(
   selectedAccountID,
   selectedEventType,
   selectedFacetAttributes,
+  whereClause,
   timerangeArray,
   cardinalityTotals
 ) {
-  const since = timerangeArray[0];
-  const until = timerangeArray[timerangeArray.length - 1];
   const { data, error } = await NerdGraphQuery.query(
     buildCardinalityTimeseriesQuery(
       selectedAccountID,
       selectedEventType,
       selectedFacetAttributes.map(attrObj => attrObj.key),
-      since,
-      until
+      whereClause
     )
   );
   if (error) {

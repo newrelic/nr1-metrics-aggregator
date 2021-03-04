@@ -20,6 +20,7 @@ class RuleValidator extends React.Component {
       'selectedEventType',
       'selectedAggregator',
       'selectedAttribute',
+      'validatedFilterNRQL',
       'cardinalityTotals'
     ];
     for (let i = 0; i < propsThatAffectCardinality.length; i++) {
@@ -152,6 +153,7 @@ RuleValidator.propTypes = {
   cardinalityTotals: PropTypes.object,
   cardinalityRuleViolation: PropTypes.bool,
   cardinalityAccountViolation: PropTypes.bool,
+  validatedFilterNRQL: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   setValidationTimeout: PropTypes.func.isRequired,
   cardinalityDataLoading: PropTypes.bool.isRequired,
   cardinalityTimeseries: PropTypes.oneOfType([
