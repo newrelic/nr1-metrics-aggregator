@@ -1,3 +1,10 @@
+## [0.9.13](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.12...v0.9.13) (2021-03-25)
+
+
+### Bug Fixes
+
+* trigger update ([cf792bc](https://github.com/newrelic/nr1-metrics-aggregator/commit/cf792bcb7a39b36fc6641b22b035d74572a28cfa))
+
 ## [0.9.12](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.11...v0.9.12) (2021-03-04)
 
 
