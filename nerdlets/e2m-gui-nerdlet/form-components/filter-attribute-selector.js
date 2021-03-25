@@ -11,6 +11,7 @@ const availableOperators = [
   '>',
   '>=',
   'LIKE',
+  'NOT LIKE',
   'IS NULL',
   'IS NOT NULL'
 ];
