@@ -1,3 +1,10 @@
+## [0.9.17](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.16...v0.9.17) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade react-copy-to-clipboard from 5.0.2 to 5.0.3 ([f6d886c](https://github.com/newrelic/nr1-metrics-aggregator/commit/f6d886c1d28047be8b6c58feb6ebbbc464ddc325))
+
 ## [0.9.16](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.15...v0.9.16) (2021-05-07)
 
 
