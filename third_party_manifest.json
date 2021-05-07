@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri May 07 2021 18:20:03 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:23:56 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-metrics-aggregator",
   "projectUrl": "https://github.com/newrelic/nr1-metrics-aggregator",
   "includeDev": true,
@@ -64,15 +64,15 @@
       "publisher": "Kevin Qi",
       "email": "iqnivek@gmail.com"
     },
-    "react-copy-to-clipboard@5.0.2": {
+    "react-copy-to-clipboard@5.0.3": {
       "name": "react-copy-to-clipboard",
-      "version": "5.0.2",
-      "range": "^5.0.2",
+      "version": "5.0.3",
+      "range": "^5.0.3",
       "licenses": "MIT",
       "repoUrl": "https://github.com/nkbt/react-copy-to-clipboard",
-      "versionedRepoUrl": "https://github.com/nkbt/react-copy-to-clipboard/tree/v5.0.2",
+      "versionedRepoUrl": "https://github.com/nkbt/react-copy-to-clipboard/tree/v5.0.3",
       "licenseFile": "node_modules/react-copy-to-clipboard/LICENSE",
-      "licenseUrl": "https://github.com/nkbt/react-copy-to-clipboard/blob/v5.0.2/LICENSE",
+      "licenseUrl": "https://github.com/nkbt/react-copy-to-clipboard/blob/v5.0.3/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Nik Butenko",
       "email": "nik@butenko.me"

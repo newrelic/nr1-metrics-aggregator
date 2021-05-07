@@ -363,7 +363,7 @@ SOFTWARE.
 
 ### react-copy-to-clipboard
 
-This product includes source derived from [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard) ([v5.0.2](https://github.com/nkbt/react-copy-to-clipboard/tree/v5.0.2)), distributed under the [MIT License](https://github.com/nkbt/react-copy-to-clipboard/blob/v5.0.2/LICENSE):
+This product includes source derived from [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard) ([v5.0.3](https://github.com/nkbt/react-copy-to-clipboard/tree/v5.0.3)), distributed under the [MIT License](https://github.com/nkbt/react-copy-to-clipboard/blob/v5.0.3/LICENSE):
 
 ```
 The MIT License (MIT)
