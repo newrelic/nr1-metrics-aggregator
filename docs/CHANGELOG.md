@@ -1,3 +1,11 @@
+## [0.9.16](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.15...v0.9.16) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade @newrelic/nr1-community from 1.1.1 to 1.2.0 ([39c6051](https://github.com/newrelic/nr1-metrics-aggregator/commit/39c6051cddfd5fa32ecd133cde258b1f300a4725))
+* upgrade react-select-search from 0.10.1 to 0.10.2 ([5cc3997](https://github.com/newrelic/nr1-metrics-aggregator/commit/5cc3997fbf51b53096af4fb784f38b828005f636))
+
 ## [0.9.15](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.14...v0.9.15) (2021-05-07)
 
 
