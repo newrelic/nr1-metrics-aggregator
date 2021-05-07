@@ -1,3 +1,10 @@
+## [0.9.14](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.13...v0.9.14) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade react-circular-progressbar from 2.0.3 to 2.0.4 ([4473ef3](https://github.com/newrelic/nr1-metrics-aggregator/commit/4473ef35a53f4d750817d9bddfde130adb5cad80))
+
 ## [0.9.13](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.12...v0.9.13) (2021-03-25)
 
 
