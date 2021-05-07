@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "Fri May 07 2021 18:08:07 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:20:03 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-metrics-aggregator",
   "projectUrl": "https://github.com/newrelic/nr1-metrics-aggregator",
   "includeDev": true,
@@ -16,15 +16,15 @@
       "licenseTextSource": "file",
       "publisher": "Material-UI Team"
     },
-    "@newrelic/nr1-community@1.1.1": {
+    "@newrelic/nr1-community@1.2.0": {
       "name": "@newrelic/nr1-community",
-      "version": "1.1.1",
-      "range": "^1.1.1",
+      "version": "1.2.0",
+      "range": "^1.2.0",
       "licenses": "Apache-2.0",
       "repoUrl": "https://github.com/newrelic/nr1-community",
-      "versionedRepoUrl": "https://github.com/newrelic/nr1-community/tree/v1.1.1",
+      "versionedRepoUrl": "https://github.com/newrelic/nr1-community/tree/v1.2.0",
       "licenseFile": "node_modules/@newrelic/nr1-community/LICENSE",
-      "licenseUrl": "https://github.com/newrelic/nr1-community/blob/v1.1.1/LICENSE",
+      "licenseUrl": "https://github.com/newrelic/nr1-community/blob/v1.2.0/LICENSE",
       "licenseTextSource": "file",
       "publisher": "newrelic"
     },
@@ -77,15 +77,15 @@
       "publisher": "Nik Butenko",
       "email": "nik@butenko.me"
     },
-    "react-select-search@0.10.1": {
+    "react-select-search@0.10.2": {
       "name": "react-select-search",
-      "version": "0.10.1",
-      "range": "^0.10.1",
+      "version": "0.10.2",
+      "range": "^0.10.2",
       "licenses": "MIT",
       "repoUrl": "https://github.com/tbleckert/react-select-search",
-      "versionedRepoUrl": "https://github.com/tbleckert/react-select-search/tree/v0.10.1",
+      "versionedRepoUrl": "https://github.com/tbleckert/react-select-search/tree/v0.10.2",
       "licenseFile": "node_modules/react-select-search/LICENSE",
-      "licenseUrl": "https://github.com/tbleckert/react-select-search/blob/v0.10.1/LICENSE",
+      "licenseUrl": "https://github.com/tbleckert/react-select-search/blob/v0.10.2/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Tobias Bleckert",
       "url": "hola@tobiasbleckert.se"

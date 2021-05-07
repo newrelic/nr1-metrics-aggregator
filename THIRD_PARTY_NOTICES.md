@@ -67,7 +67,7 @@ SOFTWARE.
 
 ### @newrelic/nr1-community
 
-This product includes source derived from [@newrelic/nr1-community](https://github.com/newrelic/nr1-community) ([v1.1.1](https://github.com/newrelic/nr1-community/tree/v1.1.1)), distributed under the [Apache-2.0 License](https://github.com/newrelic/nr1-community/blob/v1.1.1/LICENSE):
+This product includes source derived from [@newrelic/nr1-community](https://github.com/newrelic/nr1-community) ([v1.2.0](https://github.com/newrelic/nr1-community/tree/v1.2.0)), distributed under the [Apache-2.0 License](https://github.com/newrelic/nr1-community/blob/v1.2.0/LICENSE):
 
 ```
                                  Apache License
@@ -393,7 +393,7 @@ SOFTWARE.
 
 ### react-select-search
 
-This product includes source derived from [react-select-search](https://github.com/tbleckert/react-select-search) ([v0.10.1](https://github.com/tbleckert/react-select-search/tree/v0.10.1)), distributed under the [MIT License](https://github.com/tbleckert/react-select-search/blob/v0.10.1/LICENSE):
+This product includes source derived from [react-select-search](https://github.com/tbleckert/react-select-search) ([v0.10.2](https://github.com/tbleckert/react-select-search/tree/v0.10.2)), distributed under the [MIT License](https://github.com/tbleckert/react-select-search/blob/v0.10.2/LICENSE):
 
 ```
 The MIT License (MIT)
