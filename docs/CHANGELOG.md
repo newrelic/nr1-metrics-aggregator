@@ -1,3 +1,17 @@
+## [0.9.15](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.14...v0.9.15) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.6.1 to 4.11.3 ([675cee1](https://github.com/newrelic/nr1-metrics-aggregator/commit/675cee163a9771a6e215fa0b13053be0a7453ceb))
+
+## [0.9.14](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.13...v0.9.14) (2021-05-07)
+
+
+### Bug Fixes
+
+* upgrade react-circular-progressbar from 2.0.3 to 2.0.4 ([4473ef3](https://github.com/newrelic/nr1-metrics-aggregator/commit/4473ef35a53f4d750817d9bddfde130adb5cad80))
+
 ## [0.9.13](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.12...v0.9.13) (2021-03-25)
 
 

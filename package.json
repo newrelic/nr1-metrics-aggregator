@@ -24,7 +24,7 @@
       "email": "ward@newrelic.com"
     }
   ],
-  "version": "0.9.13",
+  "version": "0.9.15",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0",
@@ -32,13 +32,13 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
-    "@material-ui/core": "^4.6.1",
-    "@newrelic/nr1-community": "^1.1.1",
+    "@newrelic/nr1-community": "^1.2.0",
+    "@material-ui/core": "^4.11.3",
     "material-table": "^1.36.0",
     "prop-types": "^15.7.2",
-    "react-circular-progressbar": "^2.0.3",
     "react-copy-to-clipboard": "^5.0.3",
-    "react-select-search": "^0.10.1",
+    "react-circular-progressbar": "^2.0.4",
+    "react-select-search": "^0.10.2",
     "react-toggle-switch": "^3.0.4"
   },
   "devDependencies": {
