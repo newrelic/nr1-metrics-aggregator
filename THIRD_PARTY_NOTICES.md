@@ -38,7 +38,7 @@ code, the source code can be found at [https://github.com/newrelic/nr1-metrics-a
 
 ### @material-ui/core
 
-This product includes source derived from [@material-ui/core](https://github.com/mui-org/material-ui) ([v4.6.1](https://github.com/mui-org/material-ui/tree/v4.6.1)), distributed under the [MIT License](https://github.com/mui-org/material-ui/blob/v4.6.1/LICENSE):
+This product includes source derived from [@material-ui/core](https://github.com/mui-org/material-ui) ([v4.11.3](https://github.com/mui-org/material-ui/tree/v4.11.3)), distributed under the [MIT License](https://github.com/mui-org/material-ui/blob/v4.11.3/LICENSE):
 
 ```
 The MIT License (MIT)
@@ -334,7 +334,7 @@ SOFTWARE.
 
 ### react-circular-progressbar
 
-This product includes source derived from [react-circular-progressbar](https://github.com/kevinsqi/react-circular-progressbar) ([v2.0.3](https://github.com/kevinsqi/react-circular-progressbar/tree/v2.0.3)), distributed under the [MIT License](https://github.com/kevinsqi/react-circular-progressbar/blob/v2.0.3/LICENSE):
+This product includes source derived from [react-circular-progressbar](https://github.com/kevinsqi/react-circular-progressbar) ([v2.0.4](https://github.com/kevinsqi/react-circular-progressbar/tree/v2.0.4)), distributed under the [MIT License](https://github.com/kevinsqi/react-circular-progressbar/blob/v2.0.4/LICENSE):
 
 ```
 MIT License

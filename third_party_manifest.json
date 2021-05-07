@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "Tue Mar 02 2021 17:17:48 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Fri May 07 2021 18:08:07 GMT+0000 (Coordinated Universal Time)",
   "projectName": "nr1-metrics-aggregator",
   "projectUrl": "https://github.com/newrelic/nr1-metrics-aggregator",
   "includeDev": true,
   "dependencies": {
-    "@material-ui/core@4.6.1": {
+    "@material-ui/core@4.11.3": {
       "name": "@material-ui/core",
-      "version": "4.6.1",
-      "range": "^4.6.1",
+      "version": "4.11.3",
+      "range": "^4.11.3",
       "licenses": "MIT",
       "repoUrl": "https://github.com/mui-org/material-ui",
-      "versionedRepoUrl": "https://github.com/mui-org/material-ui/tree/v4.6.1",
+      "versionedRepoUrl": "https://github.com/mui-org/material-ui/tree/v4.11.3",
       "licenseFile": "node_modules/@material-ui/core/LICENSE",
-      "licenseUrl": "https://github.com/mui-org/material-ui/blob/v4.6.1/LICENSE",
+      "licenseUrl": "https://github.com/mui-org/material-ui/blob/v4.11.3/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Material-UI Team"
     },
@@ -51,15 +51,15 @@
       "licenseUrl": "https://github.com/facebook/prop-types/blob/v15.7.2/LICENSE",
       "licenseTextSource": "file"
     },
-    "react-circular-progressbar@2.0.3": {
+    "react-circular-progressbar@2.0.4": {
       "name": "react-circular-progressbar",
-      "version": "2.0.3",
-      "range": "^2.0.3",
+      "version": "2.0.4",
+      "range": "^2.0.4",
       "licenses": "MIT",
       "repoUrl": "https://github.com/kevinsqi/react-circular-progressbar",
-      "versionedRepoUrl": "https://github.com/kevinsqi/react-circular-progressbar/tree/v2.0.3",
+      "versionedRepoUrl": "https://github.com/kevinsqi/react-circular-progressbar/tree/v2.0.4",
       "licenseFile": "node_modules/react-circular-progressbar/LICENSE",
-      "licenseUrl": "https://github.com/kevinsqi/react-circular-progressbar/blob/v2.0.3/LICENSE",
+      "licenseUrl": "https://github.com/kevinsqi/react-circular-progressbar/blob/v2.0.4/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Kevin Qi",
       "email": "iqnivek@gmail.com"
