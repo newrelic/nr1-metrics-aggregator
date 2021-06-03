@@ -1,3 +1,10 @@
+## [0.9.18](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.17...v0.9.18) (2021-06-03)
+
+
+### Bug Fixes
+
+* Only wrap textual attributes ([#39](https://github.com/newrelic/nr1-metrics-aggregator/issues/39)) ([0914abb](https://github.com/newrelic/nr1-metrics-aggregator/commit/0914abbab61543394573d0c9ce89b461a3204bb8))
+
 ## [0.9.17](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.16...v0.9.17) (2021-05-07)
 
 
