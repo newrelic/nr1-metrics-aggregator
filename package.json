@@ -24,7 +24,7 @@
       "email": "ward@newrelic.com"
     }
   ],
-  "version": "0.9.18",
+  "version": "0.9.19",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0",

@@ -1,3 +1,10 @@
+## [0.9.19](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.18...v0.9.19) (2021-06-25)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.11.3 to 4.11.4 ([994a76d](https://github.com/newrelic/nr1-metrics-aggregator/commit/994a76d1bf07ee155aa5c0faf86a58eeaff1dce3))
+
 ## [0.9.18](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.17...v0.9.18) (2021-06-03)
 
 
