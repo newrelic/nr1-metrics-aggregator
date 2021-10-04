@@ -1,3 +1,10 @@
+# [0.10.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.20...v0.10.0) (2021-10-04)
+
+
+### Features
+
+* update semantic release with node ([3797cf3](https://github.com/newrelic/nr1-metrics-aggregator/commit/3797cf30c844b8627e0e7150c5aafce64c2c389b))
+
 ## [0.9.20](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.19...v0.9.20) (2021-07-27)
 
 
