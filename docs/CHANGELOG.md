@@ -1,3 +1,15 @@
+# [0.11.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.10.0...v0.11.0) (2021-10-15)
+
+
+### Bug Fixes
+
+* revert uuid ([0542f35](https://github.com/newrelic/nr1-metrics-aggregator/commit/0542f35ac45eec13dddc58c2a9c0c276583715db))
+
+
+### Features
+
+* add whats inside screenshots for nerdlet and launcher ([0f39c78](https://github.com/newrelic/nr1-metrics-aggregator/commit/0f39c7866d0a0e70511dc4a9690f7c570dd11068))
+
 # [0.10.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.9.20...v0.10.0) (2021-10-04)
 
 
