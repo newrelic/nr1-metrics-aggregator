@@ -10,7 +10,7 @@
       "address": "opensource+nr1-metrics-aggregator@newrelic.com"
     },
     "community": {
-      "url": " https://discuss.newrelic.com/t/metric-aggregator-nerdpack/101069"
+      "url": "https://discuss.newrelic.com/t/metric-aggregator-nerdpack/101069"
     }
   },
   "whatsNew": "- Disable or enable E2M rules \n\n - Check Metric cardinality as you create your E2M rule \n\n - Filter E2M rules"
