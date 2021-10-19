@@ -36,7 +36,7 @@
     "@material-ui/core": "^4.12.0",
     "material-table": "^1.36.0",
     "prop-types": "^15.7.2",
-    "react-copy-to-clipboard": "^5.0.3",
+    "react-copy-to-clipboard": "^5.0.4",
     "react-circular-progressbar": "^2.0.4",
     "react-select-search": "^0.10.2",
     "react-toggle-switch": "^3.0.4"
