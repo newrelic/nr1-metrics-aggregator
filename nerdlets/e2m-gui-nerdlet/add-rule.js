@@ -170,14 +170,13 @@ export default class AddE2MRule extends React.Component {
     if (this.state.advancedMode) {
       return this.state.userGeneratedNRQL;
     }
-    // Wrap attribute in `'s if it's not '1'
-    const optionallyEnclosedAttribute =
-      this.state.selectedAttribute === '1'
-        ? this.state.selectedAttribute
+    const attribute =
+      this.state.selectedAttribute === 1 || this.state.selectedAttribute === '1'
+        ? '1'
         : `\`${this.state.selectedAttribute}\``;
     return `FROM ${this.state.selectedEventType} SELECT ${
       this.state.selectedAggregator
-    }(${optionallyEnclosedAttribute}) AS '${this.state.validatedMetricName}' ${
+    }(${attribute}) AS '${this.state.validatedMetricName}' ${
       this.state.validatedFilterNRQL ? this.state.validatedFilterNRQL : ''
     } FACET ${this.state.selectedFacetAttributes
       .map(attrObj => `\`${attrObj.key}\``)
