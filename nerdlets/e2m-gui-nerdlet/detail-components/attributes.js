@@ -16,7 +16,7 @@ const MetricAttributes = ({ nrql }) => {
 };
 
 MetricAttributes.propTypes = {
-  nrql: PropTypes.string,
+  nrql: PropTypes.string
 };
 
 export default MetricAttributes;
