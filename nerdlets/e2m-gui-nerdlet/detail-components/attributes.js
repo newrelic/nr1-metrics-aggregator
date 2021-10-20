@@ -9,9 +9,7 @@ const MetricAttributes = ({ nrql }) => {
     <div className="Label">
       Attributes available
       <ul className="Attributes">
-        {facets.map((facet, i) => (
-          <li key={i}>{facet}</li>
-        ))}
+        {!facets ? null : facets.map((facet, i) => <li key={i}>{facet}</li>)}
       </ul>
     </div>
   );
