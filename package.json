@@ -32,19 +32,19 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
-    "@newrelic/nr1-community": "^1.2.0",
     "@material-ui/core": "^4.12.0",
-    "material-table": "^1.36.0",
+    "@newrelic/nr1-community": "^1.2.0",
+    "n": "^7.5.0",
     "prop-types": "^15.7.2",
-    "react-copy-to-clipboard": "^5.0.3",
     "react-circular-progressbar": "^2.0.4",
+    "react-copy-to-clipboard": "^5.0.4",
     "react-select-search": "^0.10.2",
     "react-toggle-switch": "^3.0.4"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
     "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/git": "^9.0.1",
     "eslint": "^6.8.0",
     "prettier": "^1.19.1",
     "react": "16.6.3",
