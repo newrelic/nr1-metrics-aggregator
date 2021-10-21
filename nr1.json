@@ -1,6 +1,6 @@
 {
   "schemaType": "NERDPACK",
-  "id": "8b1cd7d6-eb9e-4162-911e-c8f500fbd672",
+  "id": "932f5c04-5ab6-47d9-90ab-0e716237a4a3",
   "displayName": "Metric Aggregator",
   "description": "This app helps users convert raw events into metrics which typically provides performance and retention benefits."
 }
