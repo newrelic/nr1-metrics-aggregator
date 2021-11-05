@@ -1,3 +1,10 @@
+# [0.12.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.11.2...v0.12.0) (2021-11-05)
+
+
+### Features
+
+* add catalog keywords and categoryTerms ([89bb652](https://github.com/newrelic/nr1-metrics-aggregator/commit/89bb6523aa40d364e0fe3c6571ef02ebfd465148))
+
 ## [0.11.2](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.11.1...v0.11.2) (2021-10-21)
 
 
