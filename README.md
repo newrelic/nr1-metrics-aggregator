@@ -13,7 +13,6 @@ For additional details on what E2M is and why you would use it, see [Events-to-M
 This 3-minute video demonstrates how you can adjust your New Relic Event retention in conjunction with E2M for long-term trending:
 [![E2M](https://img.youtube.com/vi/3o-dna1GVwU/0.jpg)](https://www.youtube.com/watch?v=3o-dna1GVwU)
 
-
 ## Open Source License
 
 This project is distributed under the [Apache 2 license](./LICENSE).
