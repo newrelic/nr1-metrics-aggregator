@@ -37,6 +37,33 @@ export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+// Parses the metric name from an E2M rule's NRQL without regex
+function deepParseOfMetricNameFromRuleNRQL(ruleNRQL) {
+  if(ruleNRQL) {
+    const nrqlLowercase = ruleNRQL.toLowerCase();
+    // Get substring starting with the first " as "
+    const indexOfAS = nrqlLowercase.indexOf(' as ');
+    if (!indexOfAS){
+      // All rules should have ' as ' in them. If rule does not, exit function.
+      return
+    }
+    // Capture substring beggining after ' as '
+    let metricName = ruleNRQL.substring(indexOfAS + 4);
+    try {
+      if(metricName[0] !== '\'' && metricName[0] !== '`') {
+        // Capture the substring before the first space occurs
+        metricName = metricName.split(' ')[0];
+      } else {
+        // Capture the substring in between quote chars
+        metricName = metricName.split('\s[\'\`]\s')[1];
+      }
+    } catch (error) {
+      console.log('Could not deep parse metric name: ', ruleNRQL) // eslint-disable-line no-console
+    }
+    return [metricName];
+  }
+}
+
 export function getE2MRulesByMetric(e2mRules) {
   if (!e2mRules || !e2mRules.length) {
     return [];
@@ -45,8 +72,12 @@ export function getE2MRulesByMetric(e2mRules) {
   try {
     e2mRules.forEach(rule => {
       /* eslint-disable no-useless-escape */
-      const metricNames = rule.nrql.match(/\sas\s*[\'\`]([^\'\`]*)[\'\`]/gi);
-
+      let metricNames = rule.nrql.match(/\sas\s*[\'\`]([^\'\`]*)[\'\`]/gi);
+      if (!metricNames) {
+        // If the regex does not match, try again with a deeper but
+        //    slower parsing function
+        metricNames = deepParseOfMetricNameFromRuleNRQL(rule.nrql);
+      }
       if (metricNames) {
         metricNames.forEach(name => {
           const ruByMetric = { ...rule };
@@ -60,7 +91,7 @@ export function getE2MRulesByMetric(e2mRules) {
           rulesByMetric.push(ruByMetric);
         });
       } else {
-
+        // If the metric name still cannot be parsed use the rule name instead
         const ruByMetric = { ...rule };
         ruByMetric['metricName'] = rule.name
         rulesByMetric.push(ruByMetric);
