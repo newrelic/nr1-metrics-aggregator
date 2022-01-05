@@ -39,26 +39,26 @@ export function numberWithCommas(x) {
 
 // Parses the metric name from an E2M rule's NRQL without regex
 function deepParseOfMetricNameFromRuleNRQL(ruleNRQL) {
-  if(ruleNRQL) {
+  if (ruleNRQL) {
     const nrqlLowercase = ruleNRQL.toLowerCase();
     // Get substring starting with the first " as "
     const indexOfAS = nrqlLowercase.indexOf(' as ');
-    if (!indexOfAS){
+    if (!indexOfAS) {
       // All rules should have ' as ' in them. If rule does not, exit function.
-      return
+      return;
     }
     // Capture substring beggining after ' as '
     let metricName = ruleNRQL.substring(indexOfAS + 4);
     try {
-      if(metricName[0] !== '\'' && metricName[0] !== '`') {
+      if (metricName[0] !== "'" && metricName[0] !== '`') {
         // Capture the substring before the first space occurs
         metricName = metricName.split(' ')[0];
       } else {
         // Capture the substring in between quote chars
-        metricName = metricName.split('\s[\'\`]\s')[1];
+        metricName = metricName.split("s['`]s")[1];
       }
     } catch (error) {
-      console.log('Could not deep parse metric name: ', ruleNRQL) // eslint-disable-line no-console
+      console.log('Could not deep parse metric name: ', ruleNRQL); // eslint-disable-line no-console
     }
     return [metricName];
   }
@@ -93,9 +93,9 @@ export function getE2MRulesByMetric(e2mRules) {
       } else {
         // If the metric name still cannot be parsed use the rule name instead
         const ruByMetric = { ...rule };
-        ruByMetric['metricName'] = rule.name
+        ruByMetric.metricName = rule.name;
         rulesByMetric.push(ruByMetric);
-        console.log('using rule name instead of metric name for metric rule with nrql: ', rule.nrql); // eslint-disable-line no-console
+        console.log('using rule name instead of metric name: ', rule.nrql); // eslint-disable-line no-console
       }
 
       /* eslint-enable */
