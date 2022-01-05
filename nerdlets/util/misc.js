@@ -60,7 +60,11 @@ export function getE2MRulesByMetric(e2mRules) {
           rulesByMetric.push(ruByMetric);
         });
       } else {
-        console.log('could not parse metric name from rule nrql', rule.nrql); // eslint-disable-line no-console
+
+        const ruByMetric = { ...rule };
+        ruByMetric['metricName'] = rule.name
+        rulesByMetric.push(ruByMetric);
+        console.log('using rule name instead of metric name for metric rule with nrql: ', rule.nrql); // eslint-disable-line no-console
       }
 
       /* eslint-enable */
