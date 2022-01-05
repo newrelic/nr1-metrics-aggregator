@@ -1,3 +1,10 @@
+## [0.12.1](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.0...v0.12.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* typo to bump version ([8f3d03b](https://github.com/newrelic/nr1-metrics-aggregator/commit/8f3d03be5cb59b43ae6e5e4f0928ee458a360c81))
+
 # [0.12.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.11.2...v0.12.0) (2021-11-05)
 
 
