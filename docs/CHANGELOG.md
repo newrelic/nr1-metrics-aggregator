@@ -1,3 +1,10 @@
+## [0.12.3](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.2...v0.12.3) (2022-02-11)
+
+
+### Bug Fixes
+
+* upgrade prop-types from 15.8.0 to 15.8.1 ([911ceef](https://github.com/newrelic/nr1-metrics-aggregator/commit/911ceef708ee13bbb3246f3af551adc3c1d7689e))
+
 ## [0.12.2](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.1...v0.12.2) (2022-02-02)
 
 
