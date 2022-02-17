@@ -28,18 +28,18 @@ export async function calculateVolumeReductionForMetric(metric) {
     wheres,
     metricName
   );
-  let { data, errors } = await NerdGraphQuery.query(query);
+  let { data, error } = await NerdGraphQuery.query(query);
   let eventRate = null;
   let metricRate = null;
-  if (!errors) {
+  if (!error) {
     try {
       eventRate = data.actor.EventRate.nrql.results[0].eventrate;
       metricRate = data.actor.MetricRate.nrql.results[0].metricrate;
     } catch (err) {
-      errors = err;
+      error = err;
     }
   }
-  return { eventRate, metricRate, errors };
+  return { eventRate, metricRate, error };
 }
 
 export function createNewRuleGraphQuery(
@@ -172,11 +172,11 @@ export async function getE2MRulesForAccountObj(accounts) {
   let e2mRules = [];
 
   for (let i = 0; i < accountBatchArray.length; i++) {
-    const { data, errors } = await NerdGraphQuery.query(
+    const { data, error } = await NerdGraphQuery.query(
       buildRulesQuery(accountBatchArray[i])
     );
-    if (errors) {
-      throw errors;
+    if (error) {
+      throw error;
     }
     const rulesForBatch = parseE2MMetricRuleListFromResponse(data);
     e2mRules = e2mRules.concat(rulesForBatch);
@@ -187,9 +187,9 @@ export async function getE2MRulesForAccountObj(accounts) {
 // NOTE: There seems to be a bug in the SDK for AccountsQuery. I error when I try to
 //       use it imperatively.
 export async function getAccountsForUser() {
-  const { data, errors } = await AccountsQuery.query();
-  if (errors) {
-    throw errors;
+  const { data, error } = await AccountsQuery.query();
+  if (error) {
+    throw error;
   }
   // Convert accounts array to object for easier processing
   return data;
@@ -225,26 +225,26 @@ async function processBatchOfCardinalities(
   batchOfRules,
   accountId,
   errorCount,
-  maxVisibileErrors,
+  maxVisibileerror,
   cardinalitiesForAccount,
   onCardinalityAdded,
   onError
 ) {
   let failedBatch = false;
   try {
-    const { data, errors } = await calculateCardinalityForRuleBatch(
+    const { data, error } = await calculateCardinalityForRuleBatch(
       batchOfRules,
       accountId
     );
-    if (errors) {
-      const errorStr = JSON.stringify(errors);
-      const isDbLimitError = errorStr.includes('limit exceeded');
+    if (error) {
+      const errortr = JSON.stringify(error);
+      const isDbLimitError = errortr.includes('limit exceeded');
       /* eslint-disable no-console */
-      console.log('Error loading cardinality with batch: ', errorStr);
+      console.log('Error loading cardinality with batch: ', errortr);
       /* eslint-enable */
       errorCount = errorCount + 1;
-      if (!isDbLimitError && errorCount < maxVisibileErrors) {
-        onError(JSON.stringify(errors));
+      if (!isDbLimitError && errorCount < maxVisibileerror) {
+        onError(JSON.stringify(error));
       }
       failedBatch = true;
     } else if (data) {
@@ -257,7 +257,7 @@ async function processBatchOfCardinalities(
     }
   } catch (error) {
     console.log('Uncaught error processing cardinality', error); // eslint-disable-line no-console
-    if (errorCount < maxVisibileErrors) {
+    if (errorCount < maxVisibileerror) {
       onError(error);
     }
   }
@@ -282,7 +282,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
   let processIndividually = false;
   let errorCount = 0;
   const batchSize = 5;
-  const maxVisibileErrors = 1; // After displaying one error, we will silently log the remainder
+  const maxVisibileerror = 1; // After displaying one error, we will silently log the remainder
   const ruleBatchArray = chunk(e2mRulesForAccount, batchSize);
 
   for (let i = 0; i < ruleBatchArray.length; i++) {
@@ -291,7 +291,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
         ruleBatchArray[i],
         accountId,
         errorCount,
-        maxVisibileErrors,
+        maxVisibileerror,
         cardinalitiesForAccount,
         onCardinalityAdded,
         onError
@@ -309,7 +309,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
           singleItemBatch,
           accountId,
           errorCount,
-          maxVisibileErrors,
+          maxVisibileerror,
           cardinalitiesForAccount,
           onCardinalityAdded,
           onError

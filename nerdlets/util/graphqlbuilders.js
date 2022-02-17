@@ -127,7 +127,7 @@ export function buildToggleRuleQuery(accountId, ruleId, enabled) {
   const mutation = `mutation {
   eventsToMetricsUpdateRule(updates: {accountId: ${accountId}, enabled: ${enabled}, ruleId: ${ruleId}}){
     failures {
-      errors {
+      error {
         description
         reason
       }
@@ -176,7 +176,7 @@ export function buildCreateNewRuleQuery(
               nrql
               accountId
             }
-            errors {
+            error {
               reason
               description
             }
