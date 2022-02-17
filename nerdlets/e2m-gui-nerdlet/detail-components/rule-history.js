@@ -35,7 +35,7 @@ const RuleHistory = ({ ruleId, accountId }) => {
     <div className="RuleHistoryWrapper">
       <div className="Label">Rule Audit Log</div>
       <NrqlQuery
-        accountId={accountId}
+        accountIds={[accountId]}
         query={`FROM NrAuditEvent SELECT \`actorId\`, \`actionIdentifier\`, timestamp since 36 months ago WHERE actionIdentifier like 'e2m_rule%' and \`targetId\` = '${ruleId}'`}
       >
         {({ data, error, loading }) => {
