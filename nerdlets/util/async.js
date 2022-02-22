@@ -225,7 +225,7 @@ async function processBatchOfCardinalities(
   batchOfRules,
   accountId,
   errorCount,
-  maxVisibileerror,
+  maxVisibileErrors,
   cardinalitiesForAccount,
   onCardinalityAdded,
   onError
@@ -237,13 +237,13 @@ async function processBatchOfCardinalities(
       accountId
     );
     if (error) {
-      const errortr = JSON.stringify(error);
-      const isDbLimitError = errortr.includes('limit exceeded');
+      const errorStr = JSON.stringify(error);
+      const isDbLimitError = errorStr.includes('limit exceeded');
       /* eslint-disable no-console */
-      console.log('Error loading cardinality with batch: ', errortr);
+      console.log('Error loading cardinality with batch: ', errorStr);
       /* eslint-enable */
       errorCount = errorCount + 1;
-      if (!isDbLimitError && errorCount < maxVisibileerror) {
+      if (!isDbLimitError && errorCount < maxVisibileErrors) {
         onError(JSON.stringify(error));
       }
       failedBatch = true;
@@ -257,7 +257,7 @@ async function processBatchOfCardinalities(
     }
   } catch (error) {
     console.log('Uncaught error processing cardinality', error); // eslint-disable-line no-console
-    if (errorCount < maxVisibileerror) {
+    if (errorCount < maxVisibileErrors) {
       onError(error);
     }
   }
@@ -282,7 +282,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
   let processIndividually = false;
   let errorCount = 0;
   const batchSize = 5;
-  const maxVisibileerror = 1; // After displaying one error, we will silently log the remainder
+  const maxVisibileErrors = 1; // After displaying one error, we will silently log the remainder
   const ruleBatchArray = chunk(e2mRulesForAccount, batchSize);
 
   for (let i = 0; i < ruleBatchArray.length; i++) {
@@ -291,7 +291,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
         ruleBatchArray[i],
         accountId,
         errorCount,
-        maxVisibileerror,
+        maxVisibileErrors,
         cardinalitiesForAccount,
         onCardinalityAdded,
         onError
@@ -309,7 +309,7 @@ async function calculateCardinalityForEnabledRulesForAccount(
           singleItemBatch,
           accountId,
           errorCount,
-          maxVisibileerror,
+          maxVisibileErrors,
           cardinalitiesForAccount,
           onCardinalityAdded,
           onError
