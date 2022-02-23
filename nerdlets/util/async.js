@@ -237,7 +237,7 @@ async function processBatchOfCardinalities(
       accountId
     );
     if (error) {
-      const errorStr = JSON.stringify(error);
+      const errorStr = JSON.stringify(error.graphQLErrors);
       const isDbLimitError = errorStr.includes('limit exceeded');
       /* eslint-disable no-console */
       console.log('Error loading cardinality with batch: ', errorStr);
