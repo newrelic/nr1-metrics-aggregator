@@ -116,7 +116,7 @@ export default class AccountDetails extends React.Component {
 
 AccountDetails.propTypes = {
   filteredMetrics: PropTypes.array,
-  accountIdFilter: PropTypes.string,
+  accountIdFilter: PropTypes.number,
   cardinalities: PropTypes.array,
   cardinalityTotals: PropTypes.object,
   timerangeArray: PropTypes.array,
