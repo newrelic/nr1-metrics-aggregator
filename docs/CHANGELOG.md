@@ -1,3 +1,15 @@
+# [0.13.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.3...v0.13.0) (2022-02-24)
+
+
+### Bug Fixes
+
+* deprecated 'accountId' to 'accountIds' ([d656454](https://github.com/newrelic/nr1-metrics-aggregator/commit/d6564545750949800c0306e6a14111bb6942d986))
+
+
+### Features
+
+* upgrade to node 16 ([1d9205f](https://github.com/newrelic/nr1-metrics-aggregator/commit/1d9205f945932cc96dee165b9c81c62425dc97b9))
+
 ## [0.12.3](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.2...v0.12.3) (2022-02-11)
 
 
