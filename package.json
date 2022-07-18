@@ -36,7 +36,7 @@
     "@newrelic/nr1-community": "^1.2.0",
     "n": "^7.5.0",
     "prop-types": "^15.8.1",
-    "react-circular-progressbar": "^2.0.4",
+    "react-circular-progressbar": "^2.1.0",
     "react-copy-to-clipboard": "^5.0.4",
     "react-select-search": "^0.10.2",
     "react-toggle-switch": "^3.0.4"
