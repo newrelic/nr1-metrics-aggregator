@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 import { getCardinalityForRule } from '../util/cardinality-helper';
 import { toggleMetric } from '../util/async';
+import { CARDINALITY_LIMIT_PER_RULE } from '../util/limits';
 
 import EnableSwitch from './table-components/enable-switch';
 import CardinalityPercent from './table-components/cardinality-percent';
-
-const CARDINALITY_LIMIT = 100000;
 
 export default class TableWrapper extends React.Component {
   render() {
@@ -50,7 +49,7 @@ export default class TableWrapper extends React.Component {
                 m.accountId,
                 m.id
               );
-              const violation = cardinality > CARDINALITY_LIMIT;
+              const violation = cardinality > CARDINALITY_LIMIT_PER_RULE;
               const selected =
                 metricSelection &&
                 metricSelection.id === m.id &&
@@ -82,7 +81,7 @@ export default class TableWrapper extends React.Component {
                   </td>
                   <CardinalityPercent
                     cardinality={cardinality}
-                    limit={CARDINALITY_LIMIT}
+                    limit={CARDINALITY_LIMIT_PER_RULE}
                     enabled={m.enabled}
                   />
                   <EnableSwitch

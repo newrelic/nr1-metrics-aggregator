@@ -9,6 +9,10 @@ import {
 import { parseCardinalityBatchResponse } from './cardinality-helper';
 
 import { parseNRQL, chunk, parseE2MMetricRuleListFromResponse } from './misc';
+import {
+  CARDINALITY_LIMIT_PER_ACCOUNT,
+  CARDINALITY_LIMIT_PER_RULE
+} from './limits';
 
 import {
   buildCardinalityTimeseriesQueryForBatch,
@@ -379,9 +383,6 @@ export async function loadCardinalityForAllEnabledRules(
 
   return cardinalitiesForAccount;
 }
-
-const CARDINALITY_LIMIT_PER_RULE = 100000;
-const CARDINALITY_LIMIT_PER_ACCOUNT = 5000000;
 
 function determineRuleCardinalityViolation(results) {
   const cardinalityArray = results.map(i => i.cardinality);

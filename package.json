@@ -2,29 +2,14 @@
   "private": true,
   "name": "nr1-metrics-aggregator",
   "description": "New Relic One Events to Metrics application",
-  "author": {
-    "name": "Jake Neal",
-    "email": "jneal@newrelic.com"
-  },
+  "author": "Jake Neal <jneal@newrelic.com>",
   "contributors": [
-    {
-      "name": "Melinda Campbell",
-      "email": "melindacampbell@newrelic.com"
-    },
-    {
-      "name": "Joel Worral",
-      "email": "jworral@newrelic.com"
-    },
-    {
-      "name": "Peter Simkins",
-      "email": "psimkins@newrelic.com"
-    },
-    {
-      "name": "Ward Cunningham",
-      "email": "ward@newrelic.com"
-    }
+    "Melinda Campbell <melindacampbell@newrelic.com>",
+    "Joel Worral <jworral@newrelic.com>",
+    "Peter Simkins <psimkins@newrelic.com>",
+    "Ward Cunningham <ward@newrelic.com>"
   ],
-  "version": "0.13.0",
+  "version": "0.14.0",
   "scripts": {
     "start": "nr1 nerdpack:serve",
     "test": "exit 0",
@@ -32,7 +17,6 @@
     "eslint-fix": "eslint nerdlets/ --fix"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.0",
     "@newrelic/nr1-community": "^1.2.0",
     "n": "^7.5.0",
     "prop-types": "^15.8.1",
@@ -47,12 +31,26 @@
     "@semantic-release/git": "^9.0.1",
     "eslint": "^6.8.0",
     "prettier": "^1.19.1",
-    "react": "16.6.3",
-    "react-dom": "16.6.3"
+    "react": "16.10.1",
+    "react-dom": "16.10.1"
   },
   "browserslist": [
     "last 2 versions",
     "not ie < 11",
     "not dead"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newrelic/nr1-metrics-aggregator.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newrelic/nr1-metrics-aggregator/issues"
+  },
+  "homepage": "https://github.com/newrelic/nr1-metrics-aggregator#readme"
 }

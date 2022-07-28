@@ -1,3 +1,8 @@
+import {
+  CARDINALITY_LIMIT_PER_ACCOUNT,
+  CARDINALITY_LIMIT_PER_RULE
+} from './limits';
+
 export function getTimeRangeFromCardinality(cardinality) {
   return cardinality.beginTimeSeconds;
 }
@@ -5,7 +10,7 @@ export function getTimeRangeFromCardinality(cardinality) {
 function getColorForAccountTotal(chartdata) {
   let violation = false;
   for (let i = 0; i < chartdata.length; i++) {
-    if (chartdata[i].y > 5000000) {
+    if (chartdata[i].y > CARDINALITY_LIMIT_PER_ACCOUNT) {
       violation = true;
       break;
     }
@@ -16,7 +21,7 @@ function getColorForAccountTotal(chartdata) {
 function getColorForRule(chartdata) {
   let violation = false;
   for (let i = 0; i < chartdata.length; i++) {
-    if (chartdata[i].y > 100000) {
+    if (chartdata[i].y > CARDINALITY_LIMIT_PER_RULE) {
       violation = true;
       break;
     }
@@ -54,11 +59,11 @@ export function buildCardinalityChartData(
       data: nrqlStoreDataFormat
         ? timerangeArray.map(x => ({
             x,
-            y: 100000 /* This is the per rule max */
+            y: CARDINALITY_LIMIT_PER_RULE /* This is the per rule max */
           }))
         : cardinalities[0].map(cardinality => ({
             x: cardinality.beginTimeSeconds,
-            y: 100000
+            y: CARDINALITY_LIMIT_PER_RULE
           }))
     }
   ];
@@ -146,7 +151,7 @@ export function buildCardinalityTotalsChartData(
       },
       data: timerangeArray.map(x => ({
         x,
-        y: 5000000 /* This is the max total amount */
+        y: CARDINALITY_LIMIT_PER_ACCOUNT /* This is the max total amount */
       }))
     }
   ];
