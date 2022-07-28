@@ -1,3 +1,10 @@
+## [0.13.1](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.13.0...v0.13.1) (2022-07-28)
+
+
+### Bug Fixes
+
+* triggering semantic release ([2fec047](https://github.com/newrelic/nr1-metrics-aggregator/commit/2fec047efb0c60e0e4ec169da93a7acd28928c72))
+
 # [0.13.0](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.12.3...v0.13.0) (2022-02-24)
 
 
