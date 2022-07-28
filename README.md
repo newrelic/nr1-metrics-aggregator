@@ -17,7 +17,7 @@ This 3-minute video demonstrates how you can adjust your New Relic Event retenti
 
 This project is distributed under the [Apache 2 license](./LICENSE).
 
-## Dependencies
+## Dependencies 
 
 If you use New Relic, you already have New Relic Metrics. You can begin to create E2M rules immediately.
 
