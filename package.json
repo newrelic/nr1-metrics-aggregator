@@ -2,27 +2,12 @@
   "private": true,
   "name": "nr1-metrics-aggregator",
   "description": "New Relic One Events to Metrics application",
-  "author": {
-    "name": "Jake Neal",
-    "email": "jneal@newrelic.com"
-  },
+  "author": "Jake Neal <jneal@newrelic.com>",
   "contributors": [
-    {
-      "name": "Melinda Campbell",
-      "email": "melindacampbell@newrelic.com"
-    },
-    {
-      "name": "Joel Worral",
-      "email": "jworral@newrelic.com"
-    },
-    {
-      "name": "Peter Simkins",
-      "email": "psimkins@newrelic.com"
-    },
-    {
-      "name": "Ward Cunningham",
-      "email": "ward@newrelic.com"
-    }
+    "Melinda Campbell <melindacampbell@newrelic.com>",
+    "Joel Worral <jworral@newrelic.com>",
+    "Peter Simkins <psimkins@newrelic.com>",
+    "Ward Cunningham <ward@newrelic.com>"
   ],
   "version": "0.14.0",
   "scripts": {
@@ -54,5 +39,19 @@
     "last 2 versions",
     "not ie < 11",
     "not dead"
-  ]
+  ],
+  "main": ".eslintrc.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newrelic/nr1-metrics-aggregator.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newrelic/nr1-metrics-aggregator/issues"
+  },
+  "homepage": "https://github.com/newrelic/nr1-metrics-aggregator#readme"
 }
