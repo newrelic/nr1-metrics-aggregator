@@ -17,7 +17,7 @@ export function buildAttributeQueries(selectedAccountID, eventType) {
   const query = `{
     actor {
       query${selectedAccountID}: account(id: ${selectedAccountID}) {
-        nrql(query: "SELECT keyset() FROM ${eventType} since 1 week ago", timeout: 200) {
+        nrql(query: "SELECT keyset() FROM \`${eventType}\` since 1 week ago", timeout: 200) {
           results
         }
       }
