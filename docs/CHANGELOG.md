@@ -1,3 +1,10 @@
+## [0.13.2](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.13.1...v0.13.2) (2024-02-17)
+
+
+### Bug Fixes
+
+* wrap event type in backticks to avoid invalid input errors ([ef80246](https://github.com/newrelic/nr1-metrics-aggregator/commit/ef8024631918b358d0ed6f0f7c0f09343d079bae))
+
 ## [0.13.1](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.13.0...v0.13.1) (2022-07-28)
 
 
