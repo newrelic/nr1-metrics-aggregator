@@ -70,7 +70,7 @@ export function buildFilterValidationQuery(
   const query = `{
     actor {
       query${selectedAccountID}: account(id: ${selectedAccountID}) {
-        nrql(query: "SELECT count(*) as 'all', filter(count(*), ${whereNRQL}) as 'filtered'  FROM ${eventType} SINCE 1 MONTH AGO") {
+        nrql(query: "SELECT count(*) as 'all', filter(count(*), ${whereNRQL}) as 'filtered'  FROM $\`${eventType}\` SINCE 1 MONTH AGO") {
           results
         }
       }
@@ -90,7 +90,7 @@ export function buildCardinalityTimeseriesQuery(
   const query = `{
     actor {
       query${selectedAccountID}: account(id: ${selectedAccountID}) {
-        nrql(query: "FROM ${eventType} SELECT uniqueCount(${selectedFacetAttributes
+        nrql(query: "FROM \`${eventType}\` SELECT uniqueCount(${selectedFacetAttributes
     .map(facet => `\`${facet}\``)
     .join(
       ', '
@@ -113,7 +113,7 @@ export function buildCardinalityTimeseriesQueryForBatch(batchQueryInfo) {
           ? '1'
           : `uniqueCount(${facets.map(facet => `\`${facet}\``).join(', ')})`;
         return `query${index}: account(id: ${accountId}) {
-                  nrql(query: "FROM ${eventType} SELECT ${selection} AS 'cardinality' ${wheresHttpEscaped} SINCE 3 days ago TIMESERIES 1 day", timeout: 250) {
+                  nrql(query: "FROM \`${eventType}\` SELECT ${selection} AS 'cardinality' ${wheresHttpEscaped} SINCE 3 days ago TIMESERIES 1 day", timeout: 250) {
                                 results
                               }
                             }`;
@@ -203,7 +203,7 @@ export function buildRateReductionQueryForMetric(
   const query = `{
     actor {
       EventRate: account(id: ${accountId}) {
-        nrql(query: "FROM ${eventType} SELECT rate(count(*), 1 day) as 'eventrate' ${wheresHttpEscaped} since 1 day ago", timeout: 250) {
+        nrql(query: "FROM \`${eventType}\` SELECT rate(count(*), 1 day) as 'eventrate' ${wheresHttpEscaped} since 1 day ago", timeout: 250) {
           results
         }
       }
