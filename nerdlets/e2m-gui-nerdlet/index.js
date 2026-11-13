@@ -427,6 +427,7 @@ export default class E2mGui extends React.Component {
                         <RuleTable
                           filteredMetrics={filteredMetrics}
                           cardinalities={cardinalities}
+                          cardinalityDataLoading={cardinalityDataLoading}
                           setMetricSelection={this.setMetricSelection}
                           metricSelection={metricSelection}
                           accountsObj={this.state.accountsObj}

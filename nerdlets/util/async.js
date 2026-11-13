@@ -126,6 +126,19 @@ function cardinalityExpired(cardinalityStorageResponse) {
   }
 }
 
+// The cache is only usable if it was calculated for exactly the rules that
+//    are enabled now. Otherwise newly enabled rules have no cardinality.
+function cardinalityCacheMatchesRules(cachedCardinalities, e2mRulesForAccount) {
+  if (!cachedCardinalities || !cachedCardinalities.ruleIds) {
+    return false;
+  }
+  const cachedRuleIds = new Set(cachedCardinalities.ruleIds.map(id => `${id}`));
+  return (
+    cachedRuleIds.size === e2mRulesForAccount.length &&
+    e2mRulesForAccount.every(rule => cachedRuleIds.has(`${rule.id}`))
+  );
+}
+
 async function queryNerdStorageForCardinalityForAccount(accountId) {
   const result = await AccountStorageQuery.query({
     accountId: parseInt(accountId),
@@ -169,10 +182,17 @@ async function storeRuleCardinalityIfOtherCardinalityStored(accountId, rule) {
     () => true
   );
 
+  const newCardinality = newCardinalitiesForAccount.cardinalities[0];
+  if (!newCardinality) {
+    // Leave the cache as is; it no longer matches the enabled rules, so it
+    //    will be recalculated on the next load.
+    return { response: false, error: null };
+  }
   // Add new cardinality to list
-  cardinalitiesForAccount.cardinalities.push(
-    newCardinalitiesForAccount.cardinalities[0]
-  );
+  cardinalitiesForAccount.cardinalities.push(newCardinality);
+  if (cardinalitiesForAccount.ruleIds) {
+    cardinalitiesForAccount.ruleIds.push(rule.id);
+  }
   return saveCardinalityForAccountToNerdStorage(
     accountId,
     cardinalitiesForAccount
@@ -381,7 +401,11 @@ export async function loadCardinalityForAllEnabledRules(
   if (
     !bustCache &&
     !cardinalityExpired(cardinalityStorageResponse) &&
-    cardinalityStorageResponse.data.cardinalities
+    cardinalityStorageResponse.data.cardinalities &&
+    cardinalityCacheMatchesRules(
+      cardinalityStorageResponse.data,
+      e2mRulesForAccount
+    )
   ) {
     cardinalitiesForAccount = cardinalityStorageResponse.data;
   } else {
@@ -391,6 +415,7 @@ export async function loadCardinalityForAllEnabledRules(
       addBatchOfCardinalitiesForAccount,
       onError
     );
+    cardinalitiesForAccount.ruleIds = e2mRulesForAccount.map(rule => rule.id);
     try {
       await saveCardinalityForAccountToNerdStorage(
         accountId,

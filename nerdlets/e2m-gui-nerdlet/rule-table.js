@@ -13,6 +13,7 @@ export default class TableWrapper extends React.Component {
     const {
       filteredMetrics,
       cardinalities,
+      cardinalityDataLoading,
       metricSelection,
       reloadE2MRules
     } = this.props;
@@ -83,6 +84,7 @@ export default class TableWrapper extends React.Component {
                     cardinality={cardinality}
                     limit={CARDINALITY_LIMIT_PER_RULE}
                     enabled={m.enabled}
+                    loading={cardinalityDataLoading}
                   />
                   <EnableSwitch
                     enabled={m.enabled}
@@ -107,6 +109,7 @@ TableWrapper.propTypes = {
   accountsObj: PropTypes.object,
   setMetricSelection: PropTypes.func.isRequired,
   cardinalities: PropTypes.array,
+  cardinalityDataLoading: PropTypes.bool,
   metricSelection: PropTypes.object,
   reloadE2MRules: PropTypes.func.isRequired
 };
