@@ -1,3 +1,10 @@
+## [0.13.3](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.13.2...v0.13.3) (2026-11-13)
+
+
+### Bug Fixes
+
+* show Create Rule button when cardinality caching fails (NR-597932) ([ed43060](https://github.com/newrelic/nr1-metrics-aggregator/commit/ed4306016f74f4c236a285f0a148d2c42d0bd22c))
+
 ## [0.13.2](https://github.com/newrelic/nr1-metrics-aggregator/compare/v0.13.1...v0.13.2) (2024-02-17)
 
 
