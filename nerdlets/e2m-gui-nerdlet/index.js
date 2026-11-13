@@ -155,26 +155,43 @@ export default class E2mGui extends React.Component {
       const cardinalityTotals = {};
       for (let i = 0; i < accountIds.length; i++) {
         const accountId = accountIds[i];
-        const cardinalitiesForAccount = await loadCardinalityForAllEnabledRules(
-          e2mRules,
-          accountId,
-          cardinalities =>
-            this.setCardinalitiesForAccount(cardinalities, accountId, e2mRules),
-          e => {
-            console.log(e); // eslint-disable-line no-console
-            Toast.showToast({
-              title: 'An error occured calculating cardinality',
-              description: `The cardinality may not display properly.\n\nSee console for details.`,
-              actions: [],
-              type: Toast.TYPE.CRITICAL
-            });
-          },
-          bustCache
-        );
-        cardinalities.push(cardinalitiesForAccount);
-        cardinalityTotals[accountId] = getCardinalityTotalsForAccount(
-          cardinalitiesForAccount
-        );
+        // A failure on one account must not leave cardinalityTotals unset,
+        //    otherwise the "Create Rule" button never renders.
+        try {
+          const cardinalitiesForAccount = await loadCardinalityForAllEnabledRules(
+            e2mRules,
+            accountId,
+            cardinalities =>
+              this.setCardinalitiesForAccount(
+                cardinalities,
+                accountId,
+                e2mRules
+              ),
+            e => {
+              console.log(e); // eslint-disable-line no-console
+              Toast.showToast({
+                title: 'An error occured calculating cardinality',
+                description: `The cardinality may not display properly.\n\nSee console for details.`,
+                actions: [],
+                type: Toast.TYPE.CRITICAL
+              });
+            },
+            bustCache
+          );
+          cardinalities.push(cardinalitiesForAccount);
+          cardinalityTotals[accountId] = getCardinalityTotalsForAccount(
+            cardinalitiesForAccount
+          );
+        } catch (error) {
+          /* eslint-disable no-console */
+          console.log(
+            'error loading cardinality for account',
+            accountId,
+            error
+          );
+          /* eslint-enable */
+          cardinalityTotals[accountId] = null;
+        }
 
         // TODO - add incremental progress updates
       }
