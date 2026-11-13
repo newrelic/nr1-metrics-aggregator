@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 
 import { Spinner } from 'nr1';
 
-const CardinalityPercent = ({ cardinality, limit, enabled }) => {
+const CardinalityPercent = ({ cardinality, limit, enabled, loading }) => {
   if (!enabled) {
     return <td>-</td>;
   }
   if (!cardinality) {
-    return (
+    // Only spin while cardinality is still loading; otherwise it isn't coming.
+    return loading ? (
       <td>
         <Spinner />
+      </td>
+    ) : (
+      <td height="40" title="Cardinality could not be calculated for this rule">
+        N/A
       </td>
     );
   }
@@ -30,7 +35,8 @@ const CardinalityPercent = ({ cardinality, limit, enabled }) => {
 CardinalityPercent.propTypes = {
   cardinality: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   limit: PropTypes.number,
-  enabled: PropTypes.bool.isRequired
+  enabled: PropTypes.bool.isRequired,
+  loading: PropTypes.bool
 };
 
 export default CardinalityPercent;
