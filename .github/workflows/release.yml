@@ -13,7 +13,8 @@ env:
 
 jobs:
   job-checkout-and-build:
-    runs-on: ubuntu-latest
+    # Pinned: the NR1 CLI installer uses apt-key, which ubuntu-latest (26.04) no longer ships.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -25,7 +26,7 @@ jobs:
 
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         env:
           cache-name: node-modules
         with:
@@ -63,7 +64,7 @@ jobs:
 
       - name: Download Cached Deps
         id: cache-node-modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         env:
           cache-name: node-modules
         with:
