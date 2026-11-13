@@ -84,7 +84,16 @@ export async function createAndSaveNewRule(
     return { result: null, error: errorMsg };
   }
   const newRule = data.eventsToMetricsCreateRule.successes[0];
-  return storeRuleCardinalityIfOtherCardinalityStored(accountId, newRule);
+  try {
+    return await storeRuleCardinalityIfOtherCardinalityStored(
+      accountId,
+      newRule
+    );
+  } catch (cacheError) {
+    // The rule was created; only the cardinality cache update failed.
+    console.log('Unable to cache new rule cardinality', cacheError); // eslint-disable-line no-console
+    return { response: false, error: null };
+  }
 }
 
 async function calculateCardinalityForRuleBatch(batchOfRules, accountId) {
@@ -358,9 +367,16 @@ export async function loadCardinalityForAllEnabledRules(
     return { beginTimeSeconds: [], accountId, cardinalities: [] };
   }
 
-  const cardinalityStorageResponse = await queryNerdStorageForCardinalityForAccount(
-    accountId
-  );
+  // NerdStorage is only used as a cache. Users without NerdStorage access
+  //    can still create rules, so failures here must not be fatal.
+  let cardinalityStorageResponse = null;
+  try {
+    cardinalityStorageResponse = await queryNerdStorageForCardinalityForAccount(
+      accountId
+    );
+  } catch (error) {
+    console.log('Unable to read cached cardinality', accountId, error); // eslint-disable-line no-console
+  }
   let cardinalitiesForAccount;
   if (
     !bustCache &&
@@ -375,10 +391,14 @@ export async function loadCardinalityForAllEnabledRules(
       addBatchOfCardinalitiesForAccount,
       onError
     );
-    await saveCardinalityForAccountToNerdStorage(
-      accountId,
-      cardinalitiesForAccount
-    );
+    try {
+      await saveCardinalityForAccountToNerdStorage(
+        accountId,
+        cardinalitiesForAccount
+      );
+    } catch (error) {
+      console.log('Unable to cache cardinality', accountId, error); // eslint-disable-line no-console
+    }
   }
 
   return cardinalitiesForAccount;
